@@ -1,0 +1,11 @@
+{
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "tslint.enable": false,
+  "editor.fontLigatures": true,
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorStyle": "block",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.fontFamily": "'Cascadia Code', Consolas, 'Courier New', monospace"
+}
