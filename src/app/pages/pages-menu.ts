@@ -4,7 +4,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: "Dimensions and Losses",
     // icon: "shopping-cart-outline",
-    link: "/pages/dashboard",
+    link: "/pages/dimensions-and-losses",
     home: true,
   },
   {

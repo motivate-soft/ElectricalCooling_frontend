@@ -3,21 +3,21 @@ import { NbMenuModule } from "@nebular/theme";
 
 import { ThemeModule } from "../@theme/theme.module";
 import { PagesComponent } from "./pages.component";
-import { DashboardModule } from "./dashboard/dashboard.module";
-import { ECommerceModule } from "./e-commerce/e-commerce.module";
 import { PagesRoutingModule } from "./pages-routing.module";
-import { MiscellaneousModule } from "./miscellaneous/miscellaneous.module";
 import { DimensionsLossesModule } from "./dimensions-losses/dimensions-losses.module";
+import { MiscellaneousModule } from "./miscellaneous/miscellaneous.module";
+import { CoolingFlowModule } from "./cooling-flow/cooling-flow.module";
+import { HeatTransferCoefficientsModule } from "./heat-transfer-coefficients/heat-transfer-coefficients.module";
 
 @NgModule({
   imports: [
     PagesRoutingModule,
     ThemeModule,
     NbMenuModule,
-    DashboardModule,
-    DimensionsLossesModule,
-    ECommerceModule,
     MiscellaneousModule,
+    DimensionsLossesModule,
+    CoolingFlowModule,
+    HeatTransferCoefficientsModule,
   ],
   declarations: [PagesComponent],
 })

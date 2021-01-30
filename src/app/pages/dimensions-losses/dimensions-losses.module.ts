@@ -4,7 +4,10 @@ import { FormsModule } from "@angular/forms";
 import { ThemeModule } from "../../@theme/theme.module";
 import { NbButtonModule, NbCardModule, NbTabsetModule } from "@nebular/theme";
 import { Ng2SmartTableModule } from "ng2-smart-table";
+
 import { ParamsTableComponent } from "./params-table/params-table.component";
+import { LossesTableComponent } from "./losses-table/losses-table.component";
+import { DimensionsLossesComponent } from "./dimensions-losses.component";
 
 @NgModule({
   imports: [
@@ -16,6 +19,11 @@ import { ParamsTableComponent } from "./params-table/params-table.component";
     NbButtonModule,
     Ng2SmartTableModule,
   ],
-  declarations: [DimensionsComponent, ParamsTableComponent],
+  declarations: [
+    DimensionsLossesComponent,
+    DimensionsComponent,
+    ParamsTableComponent,
+    LossesTableComponent,
+  ],
 })
 export class DimensionsLossesModule {}

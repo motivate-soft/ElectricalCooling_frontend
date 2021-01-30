@@ -2,10 +2,10 @@ import { RouterModule, Routes } from "@angular/router";
 import { NgModule } from "@angular/core";
 
 import { PagesComponent } from "./pages.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
-import { ECommerceComponent } from "./e-commerce/e-commerce.component";
 import { NotFoundComponent } from "./miscellaneous/not-found/not-found.component";
-import { DimensionsComponent } from "./dimensions-losses/dimensions/dimensions.component";
+import { DimensionsLossesComponent } from "./dimensions-losses/dimensions-losses.component";
+import { CoolingFlowComponent } from "./cooling-flow/cooling-flow.component";
+import { HeatTransferCoefficientsComponent } from "./heat-transfer-coefficients/heat-transfer-coefficients.component";
 
 const routes: Routes = [
   {
@@ -14,19 +14,19 @@ const routes: Routes = [
     children: [
       {
         path: "dimensions-and-losses",
-        component: DimensionsComponent,
+        component: DimensionsLossesComponent,
       },
       {
         path: "cooling-flow",
-        component: DashboardComponent,
+        component: CoolingFlowComponent,
       },
       {
         path: "heat-transfer-coefficients",
-        component: DashboardComponent,
+        component: HeatTransferCoefficientsComponent,
       },
       {
         path: "results",
-        component: DashboardComponent,
+        component: CoolingFlowComponent,
       },
       {
         path: "",

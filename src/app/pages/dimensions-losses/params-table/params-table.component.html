@@ -1,11 +1,13 @@
-<div class="row my-5">
-  <div class="col-md-6 offset-md-3 col-sm-12">
-    <ng2-smart-table
-      [settings]="settings"
-      [source]="source"
-      (editConfirm)="onEditConfirm($event)"
-      (deleteConfirm)="onDeleteConfirm($event)"
-    >
-    </ng2-smart-table>
+<div class="px-5">
+  <div class="row my-5 show-grid">
+    <div class="col-md-6 offset-md-3 col-sm-12">
+      <ng2-smart-table
+        [settings]="settings"
+        [source]="source"
+        (editConfirm)="onEditConfirm($event)"
+        (deleteConfirm)="onDeleteConfirm($event)"
+      >
+      </ng2-smart-table>
+    </div>
   </div>
 </div>

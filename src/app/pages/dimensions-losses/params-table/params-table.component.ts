@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { LocalDataSource } from "ng2-smart-table";
 import { Stator } from "./../../../models/Stator";
 
-const COLUMNS = {
+const DEFAULT_COLUMNS = {
   parameter: {
     title: "Parameter",
     type: "string",
@@ -11,6 +11,24 @@ const COLUMNS = {
     title: "Value",
     type: "number",
   },
+};
+
+const SETTINGS = {
+  add: {
+    addButtonContent: '<i class="nb-plus"></i>',
+    createButtonContent: '<i class="nb-checkmark"></i>',
+    cancelButtonContent: '<i class="nb-close"></i>',
+  },
+  edit: {
+    editButtonContent: '<i class="nb-edit"></i>',
+    saveButtonContent: '<i class="nb-checkmark"></i>',
+    cancelButtonContent: '<i class="nb-close"></i>',
+  },
+  delete: {
+    deleteButtonContent: '<i class="nb-trash"></i>',
+    confirmDelete: true,
+  },
+  columns: DEFAULT_COLUMNS,
 };
 
 const makeDataArray = (obj) =>
@@ -25,25 +43,10 @@ const makeDataArray = (obj) =>
   styleUrls: ["./params-table.component.scss"],
 })
 export class ParamsTableComponent implements OnInit {
+  @Input() columns: any;
   @Input() data: any;
 
-  settings = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
-    columns: COLUMNS,
-  };
+  settings = SETTINGS;
 
   // data: Stator = statorData;
   source: LocalDataSource = new LocalDataSource();
@@ -52,7 +55,9 @@ export class ParamsTableComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("ParamsTableComponent", makeDataArray(this.data));
-
+    if (this.columns) {
+      this.settings = { ...SETTINGS, columns: this.columns };
+    }
     this.source.load(makeDataArray(this.data));
   }
 
