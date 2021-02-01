@@ -13,4 +13,4 @@ npm install
 npm start
 ```
 
-Then go to [localhost:4200](https://localhost:4200)
+Then go to [localhost:4200](http://localhost:4200/auth/login)
