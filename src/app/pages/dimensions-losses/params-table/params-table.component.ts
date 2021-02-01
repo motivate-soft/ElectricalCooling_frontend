@@ -31,6 +31,11 @@ const SETTINGS = {
   columns: DEFAULT_COLUMNS,
 };
 
+//  let key = value
+//    .split(/(?=[A-Z])/)
+//    .map((s) => s.toLowerCase())
+//    .join("-");
+
 const makeDataArray = (obj) =>
   Object.keys(obj).map((key) => ({
     parameter: key,
