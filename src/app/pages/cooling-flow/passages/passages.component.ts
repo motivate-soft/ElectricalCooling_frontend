@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { LocalDataSource } from "ng2-smart-table";
 import { PassagesService } from "../../../@core/mock/passages.service";
-import { Fluid } from "./../../../models/Fluid";
+
 const PASSAGES_COLUMNS = {
   passage: {
     title: "Passage",
@@ -24,6 +24,7 @@ const PASSAGES_COLUMNS = {
     type: "string",
   },
 };
+
 const SETTINGS = {
   add: {
     addButtonContent: '<i class="nb-plus"></i>',
@@ -41,16 +42,18 @@ const SETTINGS = {
   },
   columns: PASSAGES_COLUMNS,
 };
+
 @Component({
   selector: "ngx-passages",
   templateUrl: "./passages.component.html",
   styleUrls: ["./passages.component.scss"],
 })
+
 export class PassagesComponent implements OnInit {
   settings = SETTINGS;
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: PassagesService) {}
+  constructor(private service: PassagesService) { }
 
   ngOnInit(): void {
     const data = this.service.getData();

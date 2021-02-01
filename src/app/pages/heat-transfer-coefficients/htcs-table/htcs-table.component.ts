@@ -43,13 +43,18 @@ const SETTINGS = {
 export class HtcsTableComponent implements OnInit {
   settings = SETTINGS;
   source: LocalDataSource = new LocalDataSource();
-  constructor(private service: HtcsService) {}
+  constructor(private service: HtcsService) { }
 
   ngOnInit(): void {
     const coords = this.service.getCoords();
     console.log("__HtcsTableComponent", this.service.getCoords());
     this.source.load(coords);
   }
+
+  onFileChange($event): void {
+    console.log('object', $event.target.files[0])
+  }
+
   onDeleteConfirm(event): void {
     if (window.confirm("Are you sure you want to delete?")) {
       event.confirm.resolve();

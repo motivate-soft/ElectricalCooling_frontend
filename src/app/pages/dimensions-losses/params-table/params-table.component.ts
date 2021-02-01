@@ -53,13 +53,11 @@ export class ParamsTableComponent implements OnInit {
 
   settings = SETTINGS;
 
-  // data: Stator = statorData;
   source: LocalDataSource = new LocalDataSource();
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
-    console.log("ParamsTableComponent", makeDataArray(this.data));
     if (this.columns) {
       this.settings = { ...SETTINGS, columns: this.columns };
     }

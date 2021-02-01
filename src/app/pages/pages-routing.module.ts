@@ -6,6 +6,7 @@ import { NotFoundComponent } from "./miscellaneous/not-found/not-found.component
 import { DimensionsLossesComponent } from "./dimensions-losses/dimensions-losses.component";
 import { CoolingFlowComponent } from "./cooling-flow/cooling-flow.component";
 import { HeatTransferCoefficientsComponent } from "./heat-transfer-coefficients/heat-transfer-coefficients.component";
+import { ResultComponent } from "./result/result.component";
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
       },
       {
         path: "results",
-        component: CoolingFlowComponent,
+        component: ResultComponent,
       },
       {
         path: "",
@@ -45,4 +46,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PagesRoutingModule {}
+export class PagesRoutingModule { }
