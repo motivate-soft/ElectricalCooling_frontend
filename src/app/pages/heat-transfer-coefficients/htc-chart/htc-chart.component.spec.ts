@@ -8,7 +8,7 @@ describe('HtcChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HtcChartComponent ]
+      declarations: [ HtcChartComponent ],
     })
     .compileComponents();
   });

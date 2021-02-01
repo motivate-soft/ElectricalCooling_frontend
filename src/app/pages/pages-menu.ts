@@ -1,22 +1,22 @@
-import { NbMenuItem } from "@nebular/theme";
+import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: "Dimensions and Losses",
+    title: 'Dimensions and Losses',
     // icon: "shopping-cart-outline",
-    link: "/pages/dimensions-and-losses",
+    link: '/pages/dimensions-and-losses',
     home: true,
   },
   {
-    title: "Cooling Flow",
-    link: "/pages/cooling-flow",
+    title: 'Cooling Flow',
+    link: '/pages/cooling-flow',
   },
   {
-    title: "Heat Transfer Coefficients",
-    link: "/pages/heat-transfer-coefficients",
+    title: 'Heat Transfer Coefficients',
+    link: '/pages/heat-transfer-coefficients',
   },
   {
-    title: "Results",
-    link: "/pages/results",
+    title: 'Results',
+    link: '/pages/results',
   },
 ];

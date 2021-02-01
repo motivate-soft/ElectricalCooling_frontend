@@ -8,7 +8,7 @@ describe('HeatTransferCoefficientsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeatTransferCoefficientsComponent ]
+      declarations: [ HeatTransferCoefficientsComponent ],
     })
     .compileComponents();
   });

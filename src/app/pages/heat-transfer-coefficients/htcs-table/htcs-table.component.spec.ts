@@ -8,7 +8,7 @@ describe('HtcsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HtcsTableComponent ]
+      declarations: [ HtcsTableComponent ],
     })
     .compileComponents();
   });

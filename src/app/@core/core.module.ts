@@ -3,36 +3,36 @@ import {
   NgModule,
   Optional,
   SkipSelf,
-} from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { NbAuthModule, NbDummyAuthStrategy } from "@nebular/auth";
-import { NbSecurityModule, NbRoleProvider } from "@nebular/security";
-import { of as observableOf } from "rxjs";
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NbAuthModule, NbDummyAuthStrategy } from '@nebular/auth';
+import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
+import { of as observableOf } from 'rxjs';
 
-import { throwIfAlreadyLoaded } from "./module-import-guard";
+import { throwIfAlreadyLoaded } from './module-import-guard';
 import {
   AnalyticsService,
   LayoutService,
   PlayerService,
   SeoService,
   StateService,
-} from "./utils";
+} from './utils';
 
-import { MockDataModule } from "./mock/mock-data.module";
+import { MockDataModule } from './mock/mock-data.module';
 
-import { Dimensions } from "./data/dimensions";
-import { Losses } from "./data/losses";
+import { Dimensions } from './data/dimensions';
+import { Losses } from './data/losses';
 
-import { DimensionsService } from "./mock/dimensions.service";
-import { LossesService } from "./mock/losses.service";
-import { UserData } from "./data/users";
-import { UserService } from "./mock/users.service";
-import { Fluids } from "./data/fluids";
-import { FluidsService } from "./mock/fluids.service";
-import { PassagesService } from "./mock/passages.service";
-import { Passages } from "./data/passages";
-import { HtcsService } from "./mock/htcs.service";
-import { Htcs } from "./data/htcs";
+import { DimensionsService } from './mock/dimensions.service';
+import { LossesService } from './mock/losses.service';
+import { UserData } from './data/users';
+import { UserService } from './mock/users.service';
+import { Fluids } from './data/fluids';
+import { FluidsService } from './mock/fluids.service';
+import { PassagesService } from './mock/passages.service';
+import { Passages } from './data/passages';
+import { HtcsService } from './mock/htcs.service';
+import { Htcs } from './data/htcs';
 
 const socialLinks = [
   // {
@@ -64,7 +64,7 @@ const DATA_SERVICES = [
 export class NbSimpleRoleProvider extends NbRoleProvider {
   getRole() {
     // here you could provide any role based on any auth flow
-    return observableOf("guest");
+    return observableOf('guest');
   }
 }
 
@@ -74,7 +74,7 @@ export const NB_CORE_PROVIDERS = [
   ...NbAuthModule.forRoot({
     strategies: [
       NbDummyAuthStrategy.setup({
-        name: "email",
+        name: 'email',
         delay: 3000,
       }),
     ],
@@ -91,13 +91,13 @@ export const NB_CORE_PROVIDERS = [
   NbSecurityModule.forRoot({
     accessControl: {
       guest: {
-        view: "*",
+        view: '*',
       },
       user: {
-        parent: "guest",
-        create: "*",
-        edit: "*",
-        remove: "*",
+        parent: 'guest',
+        create: '*',
+        edit: '*',
+        remove: '*',
       },
     },
   }).providers,
@@ -120,7 +120,7 @@ export const NB_CORE_PROVIDERS = [
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
-    throwIfAlreadyLoaded(parentModule, "CoreModule");
+    throwIfAlreadyLoaded(parentModule, 'CoreModule');
   }
 
   static forRoot(): ModuleWithProviders<CoreModule> {

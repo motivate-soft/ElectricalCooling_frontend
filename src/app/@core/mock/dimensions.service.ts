@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { Dimensions } from "../data/dimensions";
+import { Injectable } from '@angular/core';
+import { Dimensions } from '../data/dimensions';
 
 @Injectable()
 export class DimensionsService extends Dimensions {
   data = [
     {
       Active: true,
-      Type: "Stator",
+      Type: 'Stator',
       Parameters: {
         Core_Length: 1.1,
         Stator_Outer_Diameter: 1.39,
@@ -24,7 +24,7 @@ export class DimensionsService extends Dimensions {
     },
     {
       Active: true,
-      Type: "Housing",
+      Type: 'Housing',
       Parameters: {
         Housing_Diameter: 1.225,
         Housing_Thickness: 1.38,
@@ -36,7 +36,7 @@ export class DimensionsService extends Dimensions {
     },
     {
       Active: true,
-      Type: "Rotor",
+      Type: 'Rotor',
       Parameters: {
         Airgap: 1.225,
         Shaft_Diameter: 1.38,
@@ -54,7 +54,7 @@ export class DimensionsService extends Dimensions {
     },
     {
       Active: true,
-      Type: "Winding",
+      Type: 'Winding',
       Parameters: {
         Stator_Conductor_Width: 0.007,
         Stator_Conductor_Depth: 0.008,
@@ -72,7 +72,7 @@ export class DimensionsService extends Dimensions {
     },
     {
       Active: true,
-      Type: "Magnet",
+      Type: 'Magnet',
       Parameters: {
         Rotor_Conductor_Columns: 14,
         Rotor_Conductors_In_Parallel: 1,
@@ -89,7 +89,7 @@ export class DimensionsService extends Dimensions {
     },
     {
       Active: true,
-      Type: "Operation",
+      Type: 'Operation',
       Parameters: {
         Speed: 1500,
       },

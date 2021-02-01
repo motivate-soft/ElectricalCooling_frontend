@@ -1,19 +1,19 @@
-import { Component, OnInit } from "@angular/core";
-import { LocalDataSource } from "ng2-smart-table";
-import { FluidsService } from "./../../../@core/mock/fluids.service";
+import { Component, OnInit } from '@angular/core';
+import { LocalDataSource } from 'ng2-smart-table';
+import { FluidsService } from './../../../@core/mock/fluids.service';
 
 const FLUIDS_COLUMNS = {
   name: {
-    title: "Fluid Name",
-    type: "string",
+    title: 'Fluid Name',
+    type: 'string',
   },
   density: {
-    title: "Density",
-    type: "number",
+    title: 'Density',
+    type: 'number',
   },
   conductivity: {
-    title: "Conductivity",
-    type: "number",
+    title: 'Conductivity',
+    type: 'number',
   },
 };
 
@@ -36,9 +36,9 @@ const SETTINGS = {
 };
 
 @Component({
-  selector: "ngx-fluids",
-  templateUrl: "./fluids.component.html",
-  styleUrls: ["./fluids.component.scss"],
+  selector: 'ngx-fluids',
+  templateUrl: './fluids.component.html',
+  styleUrls: ['./fluids.component.scss'],
 })
 export class FluidsComponent implements OnInit {
   settings = SETTINGS;
@@ -54,12 +54,12 @@ export class FluidsComponent implements OnInit {
         name: item.Name,
         ｄensity: item.Density,
         conductivity: item.Conductivity,
-      }))
+      })),
     );
   }
 
   onDeleteConfirm(event): void {
-    if (window.confirm("Are you sure you want to delete?")) {
+    if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();

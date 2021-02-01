@@ -16,8 +16,8 @@ export const routes: Routes = [
             },
             {
                 path: 'register',
-                component: NgxRegisterComponent
-            }
+                component: NgxRegisterComponent,
+            },
         ],
     },
 ];

@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { Htcs } from "../data/htcs";
-import { HTC } from "./../../models/HTC";
-import { HTCcoord } from "./../../models/HTCcoord";
+import { Injectable } from '@angular/core';
+import { Htcs } from '../data/htcs';
+import { HTC } from './../../models/HTC';
+import { HTCcoord } from './../../models/HTCcoord';
 
 const NAME_OPTIONS = {
-  AG: "AG",
-  BG: "BG",
-  TIP: "TIP",
-  BIP: "BIP",
+  AG: 'AG',
+  BG: 'BG',
+  TIP: 'TIP',
+  BIP: 'BIP',
 };
 
 const HTCs: HTC[] = [
@@ -121,22 +121,22 @@ export class HtcsService extends Htcs {
 
   getCoords() {
     const AGsCoords = this.htcs.map((htc) => ({
-      name: "AG",
+      name: 'AG',
       x: htc.x,
       y: htc.AG,
     }));
     const BGsCoords = this.htcs.map((htc) => ({
-      name: "BG",
+      name: 'BG',
       x: htc.x,
       y: htc.BG,
     }));
     const BIPsCoords = this.htcs.map((htc) => ({
-      name: "BIP",
+      name: 'BIP',
       x: htc.x,
       y: htc.BIP,
     }));
     const TIPsCoords = this.htcs.map((htc) => ({
-      name: "TIP",
+      name: 'TIP',
       x: htc.x,
       y: htc.TIP,
     }));

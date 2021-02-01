@@ -1,27 +1,27 @@
-import { Component, OnInit } from "@angular/core";
-import { LocalDataSource } from "ng2-smart-table";
-import { PassagesService } from "../../../@core/mock/passages.service";
+import { Component, OnInit } from '@angular/core';
+import { LocalDataSource } from 'ng2-smart-table';
+import { PassagesService } from '../../../@core/mock/passages.service';
 
 const PASSAGES_COLUMNS = {
   passage: {
-    title: "Passage",
-    type: "string",
+    title: 'Passage',
+    type: 'string',
   },
   in_passage: {
-    title: "In Passage",
-    type: "string",
+    title: 'In Passage',
+    type: 'string',
   },
   out_passage: {
-    title: "Out Passage",
-    type: "number",
+    title: 'Out Passage',
+    type: 'number',
   },
   flow_rate: {
-    title: "Flow Rate (m3/s)",
-    type: "number",
+    title: 'Flow Rate (m3/s)',
+    type: 'number',
   },
   fluid: {
-    title: "Fluid",
-    type: "string",
+    title: 'Fluid',
+    type: 'string',
   },
 };
 
@@ -44,9 +44,9 @@ const SETTINGS = {
 };
 
 @Component({
-  selector: "ngx-passages",
-  templateUrl: "./passages.component.html",
-  styleUrls: ["./passages.component.scss"],
+  selector: 'ngx-passages',
+  templateUrl: './passages.component.html',
+  styleUrls: ['./passages.component.scss'],
 })
 
 export class PassagesComponent implements OnInit {
@@ -65,11 +65,11 @@ export class PassagesComponent implements OnInit {
         out_passage: item.Out_Passage,
         flow_rate: item.Flow_Rate,
         fluid: item.Fluid,
-      }))
+      })),
     );
   }
   onDeleteConfirm(event): void {
-    if (window.confirm("Are you sure you want to delete?")) {
+    if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();

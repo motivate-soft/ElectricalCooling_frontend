@@ -1,15 +1,15 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { LocalDataSource } from "ng2-smart-table";
-import { Stator } from "./../../../models/Stator";
+import { Component, Input, OnInit } from '@angular/core';
+import { LocalDataSource } from 'ng2-smart-table';
+import { Stator } from './../../../models/Stator';
 
 const DEFAULT_COLUMNS = {
   parameter: {
-    title: "Parameter",
-    type: "string",
+    title: 'Parameter',
+    type: 'string',
   },
   value: {
-    title: "Value",
-    type: "number",
+    title: 'Value',
+    type: 'number',
   },
 };
 
@@ -43,9 +43,9 @@ const makeDataArray = (obj) =>
   }));
 
 @Component({
-  selector: "ngx-params-table",
-  templateUrl: "./params-table.component.html",
-  styleUrls: ["./params-table.component.scss"],
+  selector: 'ngx-params-table',
+  templateUrl: './params-table.component.html',
+  styleUrls: ['./params-table.component.scss'],
 })
 export class ParamsTableComponent implements OnInit {
   @Input() columns: any;
@@ -65,7 +65,7 @@ export class ParamsTableComponent implements OnInit {
   }
 
   onDeleteConfirm(event): void {
-    if (window.confirm("Are you sure you want to delete?")) {
+    if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();
@@ -73,7 +73,7 @@ export class ParamsTableComponent implements OnInit {
   }
 
   onEditConfirm(event): void {
-    if (window.confirm("Are you sure you want to edit?")) {
+    if (window.confirm('Are you sure you want to edit?')) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();
