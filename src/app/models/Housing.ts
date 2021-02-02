@@ -4,5 +4,5 @@ export class Housing {
   Housing_Length: number;
   Landing_Bars: number;
   Landing_Bar_Width: number;
-  Housing_Inner_Diameter: number;
+  // Housing_Inner_Diameter: number;
 }

@@ -8,6 +8,7 @@ export class Stator {
   Stator_Lam_Thickness_Total: number;
   Stator_Lam_Thickness_Steel: number;
   Stator_Packing_Factor: number;
+  // Tooth_Width: number;
   // Tooth_Width_Airgap: number;
   // Tooth_Width_Average: number;
 }

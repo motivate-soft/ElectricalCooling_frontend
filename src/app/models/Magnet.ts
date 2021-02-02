@@ -6,6 +6,6 @@ export class Magnet {
   Conductor_Insulation_Rotor: number;
   Rotor_NDE_Axial_Overhang: number;
   Rotor_DEAxial_Overhang: number;
-  Rotor_Winding_Width: number;
-  Rotor_Winding_Depth: number;
+  // Rotor_Winding_Width: number;
+  // Rotor_Winding_Depth: number;
 }

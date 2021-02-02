@@ -17,13 +17,12 @@ export class HtcChartComponent implements OnInit, OnDestroy {
   constructor(
     private theme: NbThemeService,
     private htcsService: HtcsService,
-  ) {}
+  ) { }
+
   ngOnInit(): void {
     this.themeSubscription = this.theme.getJsTheme().subscribe((config) => {
       const colors: any = config.variables;
       const chartjs: any = config.variables.chartjs;
-
-      console.log('colors', colors);
 
       this.data = {
         labels: this.htcsService.getXRange(),

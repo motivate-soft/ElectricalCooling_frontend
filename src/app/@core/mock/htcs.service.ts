@@ -3,12 +3,6 @@ import { Htcs } from '../data/htcs';
 import { HTC } from './../../models/HTC';
 import { HTCcoord } from './../../models/HTCcoord';
 
-const NAME_OPTIONS = {
-  AG: 'AG',
-  BG: 'BG',
-  TIP: 'TIP',
-  BIP: 'BIP',
-};
 
 const HTCs: HTC[] = [
   {

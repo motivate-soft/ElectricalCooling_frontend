@@ -33,6 +33,8 @@ import { PassagesService } from './mock/passages.service';
 import { Passages } from './data/passages';
 import { HtcsService } from './mock/htcs.service';
 import { Htcs } from './data/htcs';
+import { FacesService } from './mock/faces.service';
+import { Faces } from './data/faces';
 
 const socialLinks = [
   // {
@@ -59,6 +61,7 @@ const DATA_SERVICES = [
   { provide: Fluids, useClass: FluidsService },
   { provide: Passages, useClass: PassagesService },
   { provide: Htcs, useClass: HtcsService },
+  { provide: Faces, useClass: FacesService },
 ];
 
 export class NbSimpleRoleProvider extends NbRoleProvider {

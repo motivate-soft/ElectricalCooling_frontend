@@ -6,6 +6,7 @@ import { DimensionsService } from './dimensions.service';
 import { FluidsService } from './fluids.service';
 import { PassagesService } from './passages.service';
 import { HtcsService } from './htcs.service';
+import { FacesService } from './faces.service';
 
 const SERVICES = [
   DimensionsService,
@@ -13,6 +14,7 @@ const SERVICES = [
   FluidsService,
   PassagesService,
   HtcsService,
+  FacesService
 ];
 
 @NgModule({

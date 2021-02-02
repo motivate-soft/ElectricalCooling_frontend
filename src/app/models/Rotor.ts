@@ -7,6 +7,6 @@ export class Rotor {
   Pole_Shoe_Width: number;
   Poles: number;
   Pole_Mid_Angle: number;
-  Side_Shoe_Height: number;
-  Pole_Angle: number;
+  // Side_Shoe_Height: number;
+  // Pole_Angle: number;
 }

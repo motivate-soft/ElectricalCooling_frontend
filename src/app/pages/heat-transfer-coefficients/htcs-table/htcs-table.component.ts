@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { HtcsService } from '../../../@core/mock/htcs.service';
+import { HTC } from './../../../models/HTC';
 
 const HTCS_COLUMNS = {
   name: {
@@ -43,16 +44,49 @@ const SETTINGS = {
 export class HtcsTableComponent implements OnInit {
   settings = SETTINGS;
   source: LocalDataSource = new LocalDataSource();
-  constructor(private service: HtcsService) { }
+
+  constructor(private htcsService: HtcsService) {
+
+  }
 
   ngOnInit(): void {
-    const coords = this.service.getCoords();
-    console.log('__HtcsTableComponent', this.service.getCoords());
-    this.source.load(coords);
+    this.source.load(this.htcsService.getCoords());
   }
 
   onFileChange($event): void {
-    console.log('object', $event.target.files[0]);
+    const file = $event.target.files[0]
+    this.readFile(file)
+  }
+
+  async readFile(file) {
+    const resultText: any = await this.loadCSV(file);
+    const array = new Array();
+    const jsonObject = resultText.split(/\r?\n|\r/);
+    for (let i = 0; i < jsonObject.length; i++) {
+      array.push(jsonObject[i].split(','));
+    }
+    this.htcsService.htcs = array.map(item => ({
+      x: item[0],
+      AG: item[1],
+      BG: item[2],
+      TIP: item[3],
+      BIP: item[4],
+    }))
+    this.source.load(this.htcsService.getCoords());
+  }
+
+  async loadCSV(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = function () {
+        resolve(reader.result);
+      };
+      reader.onerror = function () {
+        reject(reader.error);
+      };
+      console.log('__reader', reader)
+      reader.readAsText(file);
+    });
   }
 
   onDeleteConfirm(event): void {

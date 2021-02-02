@@ -1,31 +1,17 @@
 <nb-card>
   <nb-card-header class="text-center">
-    <h5>Heat Transfer Coefficients</h5>
+    <h5>Faces</h5>
   </nb-card-header>
   <div class="p-5">
     <div class="row">
       <div class="col-md-6 offset-md-3 col-sm-12">
-        <input
-          #dataFileInput
-          hidden
-          type="file"
-          accept=".csv"
-          (change)="onFileChange($event)"
-        />
-        <button
-          nbButton
-          status="info"
-          class="mb-4"
-          (click)="dataFileInput.click()"
-        >
-          Load Data File
-        </button>
         <ng2-smart-table
           [settings]="settings"
           [source]="source"
           (deleteConfirm)="onDeleteConfirm($event)"
         >
         </ng2-smart-table>
+        <button nbButton (click)="open()">Open Dialog with component</button>
       </div>
     </div>
   </div>

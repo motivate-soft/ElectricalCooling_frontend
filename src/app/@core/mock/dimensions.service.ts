@@ -17,9 +17,6 @@ export class DimensionsService extends Dimensions {
         Stator_Lam_Thickness_Total: 0.5,
         Stator_Lam_Thickness_Steel: 0.495,
         Stator_Packing_Factor: 0.97,
-        //   Tooth_Width: "pi*(StatorInnerDiameter+2*(SlotDepth))/Slots-SlotWidth",
-        //   Tooth_Width_Airgap: "pi*(StatorInnerDiameter)/Slots-SlotWidth",
-        //   Tooth_Width_Average: "pi*(StatorInnerDiameter)/Slots-SlotWidth",
       },
     },
     {
@@ -31,7 +28,6 @@ export class DimensionsService extends Dimensions {
         Housing_Length: 0.925,
         Landing_Bars: 72,
         Landing_Bar_Width: 0.0968,
-        //   Housing_Inner_Diameter: "HousingDiameter-2*HousingThickness",
       },
     },
     {
@@ -46,10 +42,6 @@ export class DimensionsService extends Dimensions {
         Pole_Shoe_Width: 0.0206,
         Poles: 6,
         Pole_Mid_Angle: 0.1,
-        //   Pole_Body_Height: "asin((PoleBodyWidth/2)/(RotorOuterDiameter/2))",
-        //   Side_Shoe_Height:
-        //     "(RotorOuterDiameter/2)*cos(PoleMidAngle)-(ShaftDiameter/2+BackLamHeight+PoleBodyHeight)",
-        //   Pole_Angle: "asin((PoleShoeWidth/2)/(RotorOuterDiameter/2))",
       },
     },
     {
@@ -64,10 +56,6 @@ export class DimensionsService extends Dimensions {
         StatorDEAxialOverhang: 0.925,
         Conductors_Across_Width: 2,
         Conductor_Insulation: 0.1,
-        //   Stator_NDE_Copper_Overhang:
-        //     "sqrt((pi*StatorInnerDiameter/Phases*Pitch/4)**2+StatorNDEAxialOverhang**2)*1.2",
-        //   Stator_Copper_Length_Per_Turn:
-        //     "StatorDECopperOverhang+StatorNDECopperOverhang+CoreLength",
       },
     },
     {
@@ -81,10 +69,6 @@ export class DimensionsService extends Dimensions {
         Conductor_Insulation_Rotor: 0.25,
         Rotor_NDE_Axial_Overhang: 0.09,
         Rotor_DEAxial_Overhang: 0.09,
-        //   Rotor_Winding_Width:
-        //     "RotorConductorColumns*(RotorConductorWidth+2*ConductorInsulationRotor/1000)",
-        //   Rotor_Winding_Depth:
-        //     "RotorConductorRows*RotorConductorDepth+2*ConductorInsulationRotor*RotorConductorRows/1000",
       },
     },
     {

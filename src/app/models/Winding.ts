@@ -7,6 +7,6 @@ export class Winding {
   StatorDEAxialOverhang: number;
   Conductors_Across_Width: number;
   Conductor_Insulation: number;
-  Stator_NDE_Copper_Overhang: number;
-  Stator_Copper_Length_Per_Turn: number;
+  // Stator_NDE_Copper_Overhang: number;
+  // Stator_Copper_Length_Per_Turn: number;
 }
