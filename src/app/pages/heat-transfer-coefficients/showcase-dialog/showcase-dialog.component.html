@@ -1,18 +1,41 @@
 <nb-card>
   <nb-card-header>{{ title }}</nb-card-header>
   <nb-card-body>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis
-    tincidunt tincidunt. Vestibulum vulputate maximus massa vel tristique.
-    Suspendisse potenti. Duis aliquet purus sed dictum dictum. Donec fringilla,
-    purus at fermentum imperdiet, velit enim malesuada turpis, quis luctus arcu
-    arcu nec orci. Duis eu mattis felis. Quisque sollicitudin elementum nunc vel
-    tincidunt. Vestibulum egestas mi nec iaculis varius. Morbi in risus sed
-    sapien ultricies feugiat. Quisque pulvinar mattis purus, in aliquet massa
-    aliquet et.
+    <h5>{{ rowData && rowData.face }}</h5>
+    <!-- <nb-select placeholder="Select a set" selected="1">
+      <nb-option value="1">AG</nb-option>
+      <nb-option value="2">BG</nb-option>
+      <nb-option value="3">BIP</nb-option>
+      <nb-option value="4">TIP</nb-option>
+    </nb-select> -->
+
+    <!-- <nb-select #setSelect selected="1">
+      <nb-option *ngFor="let set of setOptions; let i = index" value="i">
+        {{ set }}
+      </nb-option>
+    </nb-select> -->
+
+    <nb-select placeholder="Select a set" [(selected)]="selectedIndex">
+      <nb-option value="1">AG</nb-option>
+      <nb-option value="2">BG</nb-option>
+      <nb-option value="3">BIP</nb-option>
+      <nb-option value="4">TIP</nb-option>
+    </nb-select>
+
+    <!-- <nb-select
+      placeholder="Select a set"
+      [formControl]="selectedIndexFormControl"
+    >
+      <nb-option value="1">AG</nb-option>
+      <nb-option value="2">BG</nb-option>
+      <nb-option value="3">BIP</nb-option>
+      <nb-option value="4">TIP</nb-option>
+    </nb-select> -->
   </nb-card-body>
   <nb-card-footer>
-    <button nbButton hero status="primary" (click)="dismiss()">
-      Dismiss Dialog
+    <button class="cancel" nbButton status="danger" (click)="cancel()">
+      Cancel
     </button>
+    <button nbButton status="success" (click)="save()">Save</button>
   </nb-card-footer>
 </nb-card>

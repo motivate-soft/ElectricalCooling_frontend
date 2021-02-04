@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 
 @Component({
@@ -9,10 +10,22 @@ import { NbDialogRef } from '@nebular/theme';
 export class ShowcaseDialogComponent {
 
   @Input() title: string;
+  @Input() rowData: any;
 
-  constructor(protected ref: NbDialogRef<ShowcaseDialogComponent>) {}
+  selectedIndex: number = 1;
 
-  dismiss() {
-    this.ref.close();
+  selectedIndexFormControl = new FormControl();
+
+  setOptions: any[] = ['AG', 'BG', 'BIP', 'TIP']
+
+  constructor(protected ref: NbDialogRef<ShowcaseDialogComponent>) { }
+
+  save() {
+    console.log('selectedIndex', this.selectedIndex)
+    this.ref.close(this.setOptions[this.selectedIndex - 1]);
+  }
+
+  cancel() {
+    this.ref.close()
   }
 }

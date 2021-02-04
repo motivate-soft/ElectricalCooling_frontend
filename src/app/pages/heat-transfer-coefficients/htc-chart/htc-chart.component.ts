@@ -30,26 +30,26 @@ export class HtcChartComponent implements OnInit, OnDestroy {
           {
             data: this.htcsService.getAGs(),
             label: 'AG',
-            backgroundColor: NbColorHelper.hexToRgbA(colors.primary, 0.3),
+            backgroundColor: 'transparent',
             borderColor: colors.primary,
           },
           {
             data: this.htcsService.getBGs(),
             label: 'BG',
-            backgroundColor: NbColorHelper.hexToRgbA(colors.danger, 0.3),
+            backgroundColor: 'transparent',
             borderColor: colors.danger,
           },
           {
             data: this.htcsService.getBIPs(),
             label: 'BIP',
-            backgroundColor: NbColorHelper.hexToRgbA(colors.info, 0.3),
+            backgroundColor: 'transparent',
             borderColor: colors.info,
           },
           {
             data: this.htcsService.getTIPs(),
             label: 'TIP',
-            backgroundColor: NbColorHelper.hexToRgbA(colors.warning, 0.3),
-            borderColor: colors.info,
+            backgroundColor: 'transparent',
+            borderColor: colors.warning,
           },
         ],
       };
