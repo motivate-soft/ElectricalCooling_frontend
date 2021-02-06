@@ -77,30 +77,29 @@ export const NB_CORE_PROVIDERS = [
   ...DATA_SERVICES,
   ...NbAuthModule.forRoot({
     strategies: [
-      NbDummyAuthStrategy.setup({
-        name: 'email',
-        delay: 3000,
-      }),
-      // NbPasswordAuthStrategy.setup({
+      // NbDummyAuthStrategy.setup({
       //   name: 'email',
-      //   baseEndpoint: 'http://127.0.0.1:8000',
-      //   login: {
-      //     endpoint: '/auth/jwt/create/',
-      //     method: 'post',
-      //     redirect: {
-      //       success: '/pages/',
-      //       failure: null,
-      //     },
-      //   },
-      //   register: {
-      //     endpoint: '/auth/users/',
-      //   },
-      //   token: {
-      //     class: NbAuthJWTToken,
-      //     key: 'access',
-      //   },
-
+      //   delay: 3000,
       // }),
+      NbPasswordAuthStrategy.setup({
+        name: 'email',
+        baseEndpoint: 'http://127.0.0.1:8000',
+        login: {
+          endpoint: '/api/auth/jwt/create/',
+          method: 'post',
+          redirect: {
+            success: '/pages/',
+            failure: null,
+          },
+        },
+        register: {
+          endpoint: '/auth/users/',
+        },
+        token: {
+          class: NbAuthJWTToken,
+          key: 'access',
+        },
+      }),
     ],
     forms: {
       login: {

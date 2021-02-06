@@ -191,11 +191,13 @@ export class FacesTableComponent implements OnInit {
       })
       .onClose.subscribe(setName => {
         // const selectedRowIndex = this.data.findIndex(item => item === rowData)
+        if (!setName) return;
         const selectedRowIndex = this.data.indexOf(rowData)
         console.log('selectedRowIndex', selectedRowIndex)
         console.log('rowData', rowData)
         console.log('setName', setName)
-        this.data[selectedRowIndex] = { ...rowData, calculation: `${rowData.calculation}:${setName}` }
+        const calc = rowData.calculation.split(":")[0]
+        this.data[selectedRowIndex] = { ...rowData, calculation: `${calc}:${setName}` }
         this.source.load(this.data)
       });
   }

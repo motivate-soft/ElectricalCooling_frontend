@@ -14,7 +14,7 @@ export class ShowcaseDialogComponent {
 
   selectedIndex: number = 1;
 
-  selectedIndexFormControl = new FormControl();
+  // selectedIndexFormControl = new FormControl();
 
   setOptions: any[] = ['AG', 'BG', 'BIP', 'TIP']
 
@@ -22,7 +22,11 @@ export class ShowcaseDialogComponent {
 
   save() {
     console.log('selectedIndex', this.selectedIndex)
-    this.ref.close(this.setOptions[this.selectedIndex - 1]);
+    if (this.selectedIndex) {
+      this.ref.close(this.setOptions[this.selectedIndex - 1]);
+    } else {
+      this.ref.close()
+    }
   }
 
   cancel() {
