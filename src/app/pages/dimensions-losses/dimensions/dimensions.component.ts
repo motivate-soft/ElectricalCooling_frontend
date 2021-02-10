@@ -3,7 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Dimensions } from '../../../@core/data/dimensions';
 
 @Component({
-  selector: 'ngx-dimensions',
+  selector: 'app-dimensions',
   templateUrl: './dimensions.component.html',
   styleUrls: ['./dimensions.component.scss'],
 })
@@ -16,7 +16,7 @@ export class DimensionsComponent implements OnInit {
   windingParams: any;
   magnetParams: any;
 
-  constructor(private service: Dimensions) {}
+  constructor(private service: Dimensions) { }
 
   ngOnInit(): void {
     const data = this.service.getData();

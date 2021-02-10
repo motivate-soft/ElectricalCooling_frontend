@@ -37,7 +37,7 @@ const SETTINGS = {
 };
 
 @Component({
-  selector: 'ngx-htcs-table',
+  selector: 'app-htcs-table',
   templateUrl: './htcs-table.component.html',
   styleUrls: ['./htcs-table.component.scss'],
 })

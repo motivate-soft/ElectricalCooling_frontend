@@ -43,7 +43,7 @@ const makeDataArray = (obj) =>
   }));
 
 @Component({
-  selector: 'ngx-params-table',
+  selector: 'app-params-table',
   templateUrl: './params-table.component.html',
   styleUrls: ['./params-table.component.scss'],
 })

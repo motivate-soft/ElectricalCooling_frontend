@@ -3,7 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 
 
 @Component({
-    selector: 'ngx-result',
+    selector: 'app-result',
     templateUrl: './result.component.html',
     styleUrls: ['./result.component.scss'],
 })

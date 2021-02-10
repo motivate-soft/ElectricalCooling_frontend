@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 
 @Component({
-  selector: 'ngx-showcase-dialog',
+  selector: 'app-showcase-dialog',
   templateUrl: 'showcase-dialog.component.html',
   styleUrls: ['showcase-dialog.component.scss'],
 })

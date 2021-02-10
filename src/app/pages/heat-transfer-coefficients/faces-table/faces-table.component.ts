@@ -103,7 +103,7 @@ export class ButtonViewComponent implements ViewCell, OnInit {
 
 
 @Component({
-  selector: 'ngx-faces-table',
+  selector: 'app-faces-table',
   templateUrl: './faces-table.component.html',
   styleUrls: ['./faces-table.component.scss'],
 })

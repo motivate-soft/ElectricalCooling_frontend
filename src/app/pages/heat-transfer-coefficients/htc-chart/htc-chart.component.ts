@@ -5,7 +5,7 @@ import { HtcsService } from '../../../@core/mock/htcs.service';
 const DEFAULT_XRANGE = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
 
 @Component({
-  selector: 'ngx-htc-chart',
+  selector: 'app-htc-chart',
   templateUrl: './htc-chart.component.html',
   styleUrls: ['./htc-chart.component.scss'],
 })

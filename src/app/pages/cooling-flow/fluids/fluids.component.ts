@@ -36,7 +36,7 @@ const SETTINGS = {
 };
 
 @Component({
-  selector: 'ngx-fluids',
+  selector: 'app-fluids',
   templateUrl: './fluids.component.html',
   styleUrls: ['./fluids.component.scss'],
 })
@@ -44,7 +44,7 @@ export class FluidsComponent implements OnInit {
   settings = SETTINGS;
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: FluidsService) {}
+  constructor(private service: FluidsService) { }
 
   ngOnInit(): void {
     const data = this.service.getData();

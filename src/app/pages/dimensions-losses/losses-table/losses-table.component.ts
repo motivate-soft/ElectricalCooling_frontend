@@ -43,7 +43,7 @@ const makeDataArray = (arr) =>
   }));
 
 @Component({
-  selector: 'ngx-losses',
+  selector: 'app-losses',
   templateUrl: './losses-table.component.html',
   styleUrls: ['./losses-table.component.scss'],
 })
@@ -52,7 +52,7 @@ export class LossesTableComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: LossesService) {}
+  constructor(private service: LossesService) { }
 
   ngOnInit(): void {
     const data = this.service.getData();

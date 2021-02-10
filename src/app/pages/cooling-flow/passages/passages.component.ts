@@ -44,7 +44,7 @@ const SETTINGS = {
 };
 
 @Component({
-  selector: 'ngx-passages',
+  selector: 'app-passages',
   templateUrl: './passages.component.html',
   styleUrls: ['./passages.component.scss'],
 })
