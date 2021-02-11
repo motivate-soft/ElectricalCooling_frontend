@@ -11,6 +11,18 @@ export const routes: Routes = [
       .then(m => m.PagesModule),
   },
   {
+    path: 'pages/cmodel/new',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./detail/detail.module')
+      .then(m => m.DetailModule),
+  },
+  {
+    path: 'pages/cmodel/:id',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./detail/detail.module')
+      .then(m => m.DetailModule),
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module')
       .then(m => m.NgxAuthModule),

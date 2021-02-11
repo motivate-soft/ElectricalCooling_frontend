@@ -1,0 +1,24 @@
+@import "../../@theme/styles/themes";
+
+@include nb-install-component() {
+  nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+  .show-grid {
+    .row {
+      margin: -0.5rem;
+    }
+
+    div[class^="col-"] {
+      padding: 0.5rem;
+      box-sizing: border-box;
+
+      div {
+        text-align: center;
+        background-color: nb-theme(background-basic-color-2);
+        padding: 0.75rem 0.25rem;
+        border-radius: 0.25rem;
+      }
+    }
+  }
+}
