@@ -1,0 +1,7 @@
+@import "../../../../@theme/styles/themes";
+
+@include nb-install-component() {
+  ng2-smart-table {
+    // max-width: 500px;
+  }
+}

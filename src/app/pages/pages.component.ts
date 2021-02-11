@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MENU_ITEMS } from './pages-menu';
+import {Component, OnInit} from '@angular/core';
+import {MENU_ITEMS} from './pages-menu';
 
 @Component({
   selector: 'ngx-pages',
@@ -12,7 +12,9 @@ import { MENU_ITEMS } from './pages-menu';
 })
 export class PagesComponent implements OnInit {
   menu = MENU_ITEMS;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

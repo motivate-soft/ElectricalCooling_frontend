@@ -1,0 +1,20 @@
+<nb-card>
+  <nb-card-header class="text-center"><h5>Cooling Model</h5></nb-card-header>
+  <nb-card-body>
+    <button nbButton status="info" class="mb-4" (click)="onClickSave()">Save</button>
+    <nb-tabset fullWidth>
+      <nb-tab tabTitle="Dimensions and Losses">
+        <app-dimensions-losses></app-dimensions-losses>
+      </nb-tab>
+      <nb-tab tabTitle="Cooling Flow">
+        <app-cooling-flow></app-cooling-flow>
+      </nb-tab>
+      <nb-tab tabTitle="Heat Transfer Coefficients">
+        <app-heat-transfer-coefficients></app-heat-transfer-coefficients>
+      </nb-tab>
+      <nb-tab tabTitle="Results">
+        <app-result></app-result>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+</nb-card>
