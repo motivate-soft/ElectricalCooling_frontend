@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { HtcsService } from '../../../@core/service/htcs.service';
-import { HTC } from './../../../models/HTC';
+import { HTC } from '../../../@core/models/HTC';
 
 const HTCS_COLUMNS = {
   name: {

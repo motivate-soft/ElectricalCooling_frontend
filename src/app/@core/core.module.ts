@@ -18,24 +18,15 @@ import {
   StateService,
 } from './utils';
 
-import { MockDataModule } from './service/mock-data.module';
+import { MockDataModule } from './service/service.module';
 
-import { Dimensions } from './data/dimensions';
-import { Losses } from './data/losses';
-
-import { DimensionsService } from './service/dimensions.service';
-import { LossesService } from './service/losses.service';
 import { UserData } from './data/users';
 import { UserService } from './service/users.service';
-import { Fluids } from './data/fluids';
-import { FluidsService } from './service/fluids.service';
-import { PassagesService } from './service/passages.service';
-import { Passages } from './data/passages';
-import { HtcsService } from './service/htcs.service';
 import { Htcs } from './data/htcs';
-import { FacesService } from './service/faces.service';
-import { Faces } from './data/faces';
+import { HtcsService } from './service/htcs.service';
 import { AuthGuard } from './auth-guard.service';
+import { CoolingModelData } from './data/cooling-model';
+import { CoolingModelService } from './service/cooling-model.service';
 
 const socialLinks = [
   {
@@ -57,12 +48,8 @@ const socialLinks = [
 
 const DATA_SERVICES = [
   { provide: UserData, useClass: UserService },
-  { provide: Dimensions, useClass: DimensionsService },
-  { provide: Losses, useClass: LossesService },
-  { provide: Fluids, useClass: FluidsService },
-  { provide: Passages, useClass: PassagesService },
   { provide: Htcs, useClass: HtcsService },
-  { provide: Faces, useClass: FacesService },
+  { provide: CoolingModelData, useClass: CoolingModelService },
 ];
 
 export class NbSimpleRoleProvider extends NbRoleProvider {

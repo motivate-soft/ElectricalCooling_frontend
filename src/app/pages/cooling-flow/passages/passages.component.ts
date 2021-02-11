@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { PassagesService } from '../../../@core/service/passages.service';
+import { CoolingModelService } from '../../../@core/service/cooling-model.service';
 
 const PASSAGES_COLUMNS = {
   passage: {
@@ -53,10 +53,10 @@ export class PassagesComponent implements OnInit {
   settings = SETTINGS;
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: PassagesService) { }
+  constructor(private cmodelService: CoolingModelService) { }
 
   ngOnInit(): void {
-    const data = this.service.getData();
+    const data = this.cmodelService.getPassagesData();
 
     this.source.load(
       data.map((item) => ({

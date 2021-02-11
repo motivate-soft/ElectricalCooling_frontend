@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CoolingModelService } from '../@core/service/cooling-model.service';
 
 import { MENU_ITEMS } from './pages-menu';
 
@@ -12,7 +13,13 @@ import { MENU_ITEMS } from './pages-menu';
     </ngx-one-column-layout>
   `,
 })
-export class PagesComponent {
+export class PagesComponent implements OnInit {
+  constructor(private service: CoolingModelService) {
+    this.service.loadInitialData()
+  }
+
+  ngOnInit(): void {
+  }
 
   menu = MENU_ITEMS;
 }

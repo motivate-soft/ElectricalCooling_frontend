@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { LossesService } from '../../../@core/service/losses.service';
+import { CoolingModelService } from '../../../@core/service/cooling-model.service';
 
 const LOSSES_COLUMNS = {
   name: {
@@ -52,12 +52,12 @@ export class LossesTableComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: LossesService) { }
+  constructor(private cmodelService: CoolingModelService) { }
 
   ngOnInit(): void {
-    const data = this.service.getData();
+    const data = this.cmodelService.getLossesData();
     this.source.load(makeDataArray(data));
-    console.log('__LossesTableComponent', makeDataArray(data));
+    console.log('__LossesTableComponent__', makeDataArray(data));
   }
 
   onDeleteConfirm(event): void {

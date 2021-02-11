@@ -1,4 +1,4 @@
-export class Stator {
+export interface Stator {
   Core_Length: number;
   Stator_Outer_Diameter: number;
   Stator_Inner_Diameter: number;

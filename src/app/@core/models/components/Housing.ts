@@ -1,4 +1,4 @@
-export class Housing {
+export interface Housing {
   Housing_Diameter: number;
   Housing_Thickness: number;
   Housing_Length: number;

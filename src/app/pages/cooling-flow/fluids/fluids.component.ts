@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { FluidsService } from '../../../@core/service/fluids.service';
+import { CoolingModelService } from '../../../@core/service/cooling-model.service';
 
 const FLUIDS_COLUMNS = {
   name: {
@@ -44,10 +44,10 @@ export class FluidsComponent implements OnInit {
   settings = SETTINGS;
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: FluidsService) { }
+  constructor(private cmodelService: CoolingModelService) { }
 
   ngOnInit(): void {
-    const data = this.service.getData();
+    const data = this.cmodelService.getFluidsData();
 
     this.source.load(
       data.map((item) => ({

@@ -1,4 +1,4 @@
-export class Rotor {
+export interface Rotor {
   Airgap: number;
   Shaft_Diameter: number;
   Pole_Tip_Height: number;

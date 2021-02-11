@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { Stator } from './../../../models/Stator';
+import { Stator } from '../../../@core/models/components/Stator';
 
 const DEFAULT_COLUMNS = {
   parameter: {

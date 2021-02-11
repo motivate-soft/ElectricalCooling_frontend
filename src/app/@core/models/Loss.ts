@@ -1,4 +1,4 @@
-export class Loss {
+export interface Loss {
   Name: string;
   Region: string;
   Loss: number;

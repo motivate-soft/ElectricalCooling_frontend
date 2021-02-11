@@ -1,4 +1,4 @@
-export class HTC {
+export interface HTC {
   x: number;
   AG: number;
   BG: number;

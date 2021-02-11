@@ -1,4 +1,4 @@
-export class Passage {
+export interface Passage {
   Passage: string;
   In_Passage: string;
   Out_Passage: string;

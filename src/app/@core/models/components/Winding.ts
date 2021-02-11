@@ -1,4 +1,4 @@
-export class Winding {
+export interface Winding {
   Stator_Conductor_Width: number;
   Stator_Conductor_Depth: number;
   Stator_Layers: number;

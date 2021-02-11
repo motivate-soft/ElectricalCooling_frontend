@@ -1,4 +1,4 @@
-export class Magnet {
+export interface Magnet {
   Rotor_Conductor_Columns: number;
   Rotor_Conductors_In_Parallel: number;
   Rotor_Conductor_Depth: number;
