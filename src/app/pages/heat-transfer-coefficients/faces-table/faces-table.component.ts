@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { LocalDataSource, ViewCell } from 'ng2-smart-table';
-import { FacesService } from '../../../@core/mock/faces.service';
+import { FacesService } from '../../../@core/service/faces.service';
 import { ShowcaseDialogComponent } from '../showcase-dialog/showcase-dialog.component';
 
 const DATA = [

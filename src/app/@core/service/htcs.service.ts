@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Htcs } from '../data/htcs';
-import { HTC } from './../../models/HTC';
-import { HTCcoord } from './../../models/HTCcoord';
+import { HTC } from '../../models/HTC';
+import { HTCcoord } from '../../models/HTCcoord';
 
 
 const HTCs: HTC[] = [

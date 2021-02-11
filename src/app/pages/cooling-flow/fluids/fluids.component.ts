@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { FluidsService } from './../../../@core/mock/fluids.service';
+import { FluidsService } from '../../../@core/service/fluids.service';
 
 const FLUIDS_COLUMNS = {
   name: {

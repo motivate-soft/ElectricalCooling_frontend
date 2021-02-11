@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { PassagesService } from '../../../@core/mock/passages.service';
+import { PassagesService } from '../../../@core/service/passages.service';
 
 const PASSAGES_COLUMNS = {
   passage: {

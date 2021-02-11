@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { LossesService } from './../../../@core/mock/losses.service';
+import { LossesService } from '../../../@core/service/losses.service';
 
 const LOSSES_COLUMNS = {
   name: {

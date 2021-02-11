@@ -18,22 +18,22 @@ import {
   StateService,
 } from './utils';
 
-import { MockDataModule } from './mock/mock-data.module';
+import { MockDataModule } from './service/mock-data.module';
 
 import { Dimensions } from './data/dimensions';
 import { Losses } from './data/losses';
 
-import { DimensionsService } from './mock/dimensions.service';
-import { LossesService } from './mock/losses.service';
+import { DimensionsService } from './service/dimensions.service';
+import { LossesService } from './service/losses.service';
 import { UserData } from './data/users';
-import { UserService } from './mock/users.service';
+import { UserService } from './service/users.service';
 import { Fluids } from './data/fluids';
-import { FluidsService } from './mock/fluids.service';
-import { PassagesService } from './mock/passages.service';
+import { FluidsService } from './service/fluids.service';
+import { PassagesService } from './service/passages.service';
 import { Passages } from './data/passages';
-import { HtcsService } from './mock/htcs.service';
+import { HtcsService } from './service/htcs.service';
 import { Htcs } from './data/htcs';
-import { FacesService } from './mock/faces.service';
+import { FacesService } from './service/faces.service';
 import { Faces } from './data/faces';
 import { AuthGuard } from './auth-guard.service';
 
@@ -77,36 +77,65 @@ export const NB_CORE_PROVIDERS = [
   ...DATA_SERVICES,
   ...NbAuthModule.forRoot({
     strategies: [
-      NbDummyAuthStrategy.setup({
+      NbPasswordAuthStrategy.setup({
         name: 'email',
-        delay: 3000,
+        baseEndpoint: 'http://127.0.0.1:8000',
+        login: {
+          endpoint: '/api/auth/jwt/create/',
+          redirect: {
+            success: '/pages/dimensions-and-losses',
+            failure: null,
+          },
+        },
+        register: {
+          endpoint: '/api/auth/users/',
+          requireValidToken: false,
+          redirect: {
+            success: '/auth/login',
+            failure: null,
+          },
+        },
+        logout: {
+          endpoint: '/api/auth/jwt/blacklist/',
+          method: 'post',
+          redirect: {
+            success: '/auth/login',
+            failure: '/',
+          },
+        },
+        token: {
+          class: NbAuthJWTToken,
+          key: 'token',
+        },
+        refreshToken: {
+          endpoint: '/api/auth/jwt/refresh/',
+          method: 'post',
+          requireValidToken: true,
+          redirect: {
+            success: null,
+            failure: null,
+          },
+        },
+        errors: {
+          getter: (module, res, options) => {
+            if (module === 'login') {
+              return res.error ? res.error.detail : options[module].defaultErrors;
+            }
+            if (module === 'register') {
+              return res.error ? res.error.email[0] : options[module].defaultErrors;
+            }
+            return res.error ? res.error.message : options[module].defaultErrors;
+          },
+        },
       }),
-      // NbPasswordAuthStrategy.setup({
-      //   name: 'email',
-      //   baseEndpoint: 'http://127.0.0.1:8000',
-      //   login: {
-      //     endpoint: '/api/auth/jwt/create/',
-      //     method: 'post',
-      //     redirect: {
-      //       success: '/pages/',
-      //       failure: null,
-      //     },
-      //   },
-      //   register: {
-      //     endpoint: '/api/auth/users/',
-      //   },
-      //   token: {
-      //     class: NbAuthJWTToken,
-      //     key: 'access',
-      //   },
-      // }),
     ],
     forms: {
       login: {
-        // socialLinks: socialLinks,
+        socialLinks: [],
       },
       register: {
-        // socialLinks: socialLinks,
+        socialLinks: [],
+        terms: false
       },
     },
 

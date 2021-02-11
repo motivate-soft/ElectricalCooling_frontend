@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Passages } from '../data/passages';
-import { Passage } from './../../models/Passage';
+import { Passage } from '../../models/Passage';
 
 @Injectable()
 export class PassagesService extends Passages {

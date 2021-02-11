@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Fluids } from '../data/fluids';
-import { Fluid } from './../../models/Fluid';
+import { Fluid } from '../../models/Fluid';
 
 @Injectable()
 export class FluidsService extends Fluids {
