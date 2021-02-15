@@ -18,6 +18,11 @@ const LOSSES_COLUMNS = {
 };
 
 const SETTINGS = {
+  actions: {
+    add: false,
+    edit: true,
+    delete: false,
+  },
   add: {
     addButtonContent: '<i class="nb-plus"></i>',
     createButtonContent: '<i class="nb-checkmark"></i>',
@@ -27,6 +32,7 @@ const SETTINGS = {
     editButtonContent: '<i class="nb-edit"></i>',
     saveButtonContent: '<i class="nb-checkmark"></i>',
     cancelButtonContent: '<i class="nb-close"></i>',
+    confirmSave: true
   },
   delete: {
     deleteButtonContent: '<i class="nb-trash"></i>',
@@ -47,6 +53,7 @@ const makeDataArray = (arr) =>
   templateUrl: './losses-table.component.html',
   styleUrls: ['./losses-table.component.scss'],
 })
+
 export class LossesTableComponent implements OnInit {
   settings = SETTINGS;
 
@@ -57,12 +64,29 @@ export class LossesTableComponent implements OnInit {
   ngOnInit(): void {
     const data = this.cmodelService.getLossesData();
     this.source.load(makeDataArray(data));
-    console.log('__LossesTableComponent__', makeDataArray(data));
+  }
+
+
+  onCreateConfirm(event): void {
+
   }
 
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
+
+  }
+
+  onEditConfirm(event): void {
+    if (window.confirm('Are you sure you want to edit?')) {
+      const cmodel = this.cmodelService.currentCmodel
+      this.source.getAll().then(arr => {
+        cmodel.Losses = arr.map(obj => ({
+          Name: obj.name,
+          Region: obj.region,
+          Loss: obj.loss,
+        }))
+        this.cmodelService.currentCmodel$.next(cmodel)
+        event.confirm.resolve();
+      })
     } else {
       event.confirm.reject();
     }

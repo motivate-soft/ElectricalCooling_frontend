@@ -46,6 +46,7 @@ export class FacesTableComponent implements OnInit {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmSave: true
     },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
@@ -85,8 +86,6 @@ export class FacesTableComponent implements OnInit {
         renderComponent: ButtonViewComponent,
         onComponentInitFunction: (instance: any) => {
           instance.save.subscribe(row => {
-            console.log('__instance', instance)
-            console.log('__this', this)
             this.openModal(row)
           });
         },
@@ -129,9 +128,26 @@ export class FacesTableComponent implements OnInit {
       });
   }
 
+  onCreateConfirm(event): void {
+
+  }
+
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
+
+  }
+
+  onEditConfirm(event): void {
+    if (window.confirm('Are you sure you want to edit?')) {
+      const cmodel = this.cmodelService.currentCmodel
+      this.source.getAll().then(arr => {
+        cmodel.Losses = arr.map(obj => ({
+          Face: obj.name,
+          Passage: obj.passage,
+          Calculation: obj.calculation
+        }))
+        this.cmodelService.currentCmodel$.next(cmodel)
+        event.confirm.resolve();
+      })
     } else {
       event.confirm.reject();
     }

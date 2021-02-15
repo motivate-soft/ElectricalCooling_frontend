@@ -26,6 +26,11 @@ const PASSAGES_COLUMNS = {
 };
 
 const SETTINGS = {
+  actions: {
+    add: false,
+    edit: true,
+    delete: false,
+  },
   add: {
     addButtonContent: '<i class="nb-plus"></i>',
     createButtonContent: '<i class="nb-checkmark"></i>',
@@ -35,6 +40,7 @@ const SETTINGS = {
     editButtonContent: '<i class="nb-edit"></i>',
     saveButtonContent: '<i class="nb-checkmark"></i>',
     cancelButtonContent: '<i class="nb-close"></i>',
+    confirmSave: true
   },
   delete: {
     deleteButtonContent: '<i class="nb-trash"></i>',
@@ -68,9 +74,30 @@ export class PassagesComponent implements OnInit {
       })),
     );
   }
+
+
+  onCreateConfirm(event): void {
+
+  }
+
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
+
+  }
+
+  onEditConfirm(event): void {
+    if (window.confirm('Are you sure you want to edit?')) {
+      const cmodel = this.cmodelService.currentCmodel
+      this.source.getAll().then(arr => {
+        cmodel.Passages = arr.map(obj => ({
+          Passage: obj.passage,
+          In_passage: obj.in_passage,
+          Out_passag: obj.out_passage,
+          Flow_rate: obj.flow_rate,
+          Fluid: obj.fluid
+        }))
+        this.cmodelService.currentCmodel$.next(cmodel)
+        event.confirm.resolve();
+      })
     } else {
       event.confirm.reject();
     }

@@ -1,23 +1,8 @@
 <nb-card>
   <nb-card-header class="text-center"><h5>Dimension</h5></nb-card-header>
   <nb-tabset fullWidth>
-    <nb-tab tabTitle="Housing">
-      <app-params-table [data]="housingParams"></app-params-table>
-    </nb-tab>
-    <nb-tab tabTitle="Stator">
-      <app-params-table [data]="statorParams"></app-params-table>
-    </nb-tab>
-    <nb-tab tabTitle="Rotor">
-      <app-params-table [data]="rotorParams"></app-params-table>
-    </nb-tab>
-    <nb-tab tabTitle="Operation">
-      <app-params-table [data]="operationParams"></app-params-table>
-    </nb-tab>
-    <nb-tab tabTitle="Winding">
-      <app-params-table [data]="windingParams"></app-params-table>
-    </nb-tab>
-    <nb-tab tabTitle="Magnet">
-      <app-params-table [data]="magnetParams"></app-params-table>
+    <nb-tab *ngFor="let tab of tabList" [tabTitle]="tab">
+      <app-params-table [title]="tab"></app-params-table>
     </nb-tab>
   </nb-tabset>
 </nb-card>

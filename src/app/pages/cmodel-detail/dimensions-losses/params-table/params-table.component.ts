@@ -1,19 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Stator } from '../../../../@core/models/components/Stator';
+import { CoolingModelService } from '../../../../@core/service/cooling-model.service';
 
-const DEFAULT_COLUMNS = {
-  parameter: {
-    title: 'Parameter',
-    type: 'string',
-  },
-  value: {
-    title: 'Value',
-    type: 'number',
-  },
-};
 
 const SETTINGS = {
+  actions: {
+    add: false,
+    edit: true,
+    delete: false,
+  },
   add: {
     addButtonContent: '<i class="nb-plus"></i>',
     createButtonContent: '<i class="nb-checkmark"></i>',
@@ -23,12 +19,22 @@ const SETTINGS = {
     editButtonContent: '<i class="nb-edit"></i>',
     saveButtonContent: '<i class="nb-checkmark"></i>',
     cancelButtonContent: '<i class="nb-close"></i>',
+    confirmSave: true,
   },
   delete: {
     deleteButtonContent: '<i class="nb-trash"></i>',
     confirmDelete: true,
   },
-  columns: DEFAULT_COLUMNS,
+  columns: {
+    parameter: {
+      title: 'Parameter',
+      type: 'string',
+    },
+    value: {
+      title: 'Value',
+      type: 'number',
+    },
+  },
 };
 
 //  let key = value
@@ -48,19 +54,16 @@ const makeDataArray = (obj) =>
   styleUrls: ['./params-table.component.scss'],
 })
 export class ParamsTableComponent implements OnInit {
-  @Input() columns: any;
-  @Input() data: any;
+  @Input() title: string;
 
   settings = SETTINGS;
-
+  data: any[];
   source: LocalDataSource = new LocalDataSource();
 
-  constructor() { }
+  constructor(private cmodelService: CoolingModelService) { }
 
   ngOnInit(): void {
-    if (this.columns) {
-      this.settings = { ...SETTINGS, columns: this.columns };
-    }
+    this.data = this.cmodelService.getDimensionTabData(this.title);
     this.source.load(makeDataArray(this.data));
   }
 
@@ -74,6 +77,18 @@ export class ParamsTableComponent implements OnInit {
 
   onEditConfirm(event): void {
     if (window.confirm('Are you sure you want to edit?')) {
+      console.log("editConfirm", event, event.newData);
+      const cmodel = this.cmodelService.currentCmodel
+      const parameter = event.newData.parameter
+      const value = event.newData.value
+      console.log('parameter, value, this.title', parameter, value, this.title)
+
+      cmodel.Components.forEach(item => {
+        if (item.Type === this.title) {
+          item.Parameters[parameter] = value
+        }
+      })
+      this.cmodelService.currentCmodel$.next(cmodel)
       event.confirm.resolve();
     } else {
       event.confirm.reject();

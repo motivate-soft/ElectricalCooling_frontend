@@ -18,15 +18,22 @@ const FLUIDS_COLUMNS = {
 };
 
 const SETTINGS = {
+  actions: {
+    add: false,
+    edit: true,
+    delete: false,
+  },
   add: {
     addButtonContent: '<i class="nb-plus"></i>',
     createButtonContent: '<i class="nb-checkmark"></i>',
     cancelButtonContent: '<i class="nb-close"></i>',
+    confirmCreate: true,
   },
   edit: {
     editButtonContent: '<i class="nb-edit"></i>',
     saveButtonContent: '<i class="nb-checkmark"></i>',
     cancelButtonContent: '<i class="nb-close"></i>',
+    confirmSave: true,
   },
   delete: {
     deleteButtonContent: '<i class="nb-trash"></i>',
@@ -52,15 +59,32 @@ export class FluidsComponent implements OnInit {
     this.source.load(
       data.map((item) => ({
         name: item.Name,
-        ｄensity: item.Density,
+        density: item.Density,
         conductivity: item.Conductivity,
       })),
     );
   }
 
+  onCreateConfirm(event): void {
+
+  }
+
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
+
+  }
+
+  onEditConfirm(event): void {
+    if (window.confirm('Are you sure you want to edit?')) {
+      const cmodel = this.cmodelService.currentCmodel
+      this.source.getAll().then(arr => {
+        cmodel.Fluids = arr.map(obj => ({
+          Name: obj.name,
+          Density: obj.density,
+          Conductivity: obj.conductivity
+        }))
+        this.cmodelService.currentCmodel$.next(cmodel)
+        event.confirm.resolve();
+      })
     } else {
       event.confirm.reject();
     }
