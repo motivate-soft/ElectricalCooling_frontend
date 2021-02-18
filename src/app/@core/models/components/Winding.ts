@@ -1,12 +1,10 @@
 export interface Winding {
-  Stator_Conductor_Width: number;
-  Stator_Conductor_Depth: number;
-  Stator_Layers: number;
-  Conductors_Per_Turn: number;
-  Stator_NDE_Axial_Overhang: number;
-  StatorDEAxialOverhang: number;
-  Conductors_Across_Width: number;
-  Conductor_Insulation: number;
-  // Stator_NDE_Copper_Overhang: number;
-  // Stator_Copper_Length_Per_Turn: number;
+  stator_conductor_width: number;
+  stator_conductor_depth: number;
+  stator_layers: number;
+  conductors_per_turn: number;
+  stator_nde_axial_overhang: number;
+  statordeaxialoverhang: number;
+  conductors_across_width: number;
+  conductor_insulation: number;
 }

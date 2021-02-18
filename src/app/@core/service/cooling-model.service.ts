@@ -12,6 +12,7 @@ import { Passage } from '../models/Passage';
 import { Fluid } from '../models/Fluid';
 import { CoolingModelData } from '../data/cooling-model';
 import { ConvertKeysToLowerCase } from './utils';
+import { map } from 'rxjs/operators';
 
 
 @Injectable()
@@ -63,7 +64,13 @@ export class CoolingModelService extends CoolingModelData {
 
   create(cmodel: any = this.currentCmodel): Observable<Cooling> {
     return this.apiService
-      .post('/cooling', cmodel);
+      .post('/cooling/', cmodel).pipe(map(
+        data => {
+          console.log('res', data)
+          // this.currentCmodel$.next(data as Cooling);
+          return data;
+        }
+      ))
   }
 
   update(cmodel: any = this.currentCmodel): Observable<Cooling> {
@@ -80,7 +87,6 @@ export class CoolingModelService extends CoolingModelData {
   }
 
   getDimensionTabData(key: string): any[] {
-    console.log('___key', key)
     const tabObject = this.currentCmodel.components.find((item) => item.type === key);
     return tabObject.parameters;
   }

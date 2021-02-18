@@ -1,8 +1,7 @@
 export interface Housing {
-  Housing_Diameter: number;
-  Housing_Thickness: number;
-  Housing_Length: number;
-  Landing_Bars: number;
-  Landing_Bar_Width: number;
-  // Housing_Inner_Diameter: number;
+  housing_diameter: number;
+  housing_thickness: number;
+  housing_length: number;
+  landing_bars: number;
+  landing_bar_width: number;
 }

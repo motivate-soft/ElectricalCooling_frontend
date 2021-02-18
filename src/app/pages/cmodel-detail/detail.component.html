@@ -16,7 +16,9 @@
               nbInput
               fullWidth
               id="modelName"
+              [(ngModel)]="cmodel.name"
               placeholder="Cooling model"
+              (input)="onChangeModelName($event)"
             />
           </div>
         </div>
@@ -27,7 +29,7 @@
         </button>
       </div>
     </div>
-    <nb-tabset fullWidth>
+    <nb-tabset>
       <nb-tab tabTitle="Dimensions and Losses">
         <app-dimensions-losses></app-dimensions-losses>
       </nb-tab>

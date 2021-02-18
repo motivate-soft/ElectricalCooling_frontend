@@ -1,14 +1,11 @@
 export interface Stator {
-  Core_Length: number;
-  Stator_Outer_Diameter: number;
-  Stator_Inner_Diameter: number;
-  Slots: number;
-  Slot_Depth: number;
-  Slot_Width: number;
-  Stator_Lam_Thickness_Total: number;
-  Stator_Lam_Thickness_Steel: number;
-  Stator_Packing_Factor: number;
-  // Tooth_Width: number;
-  // Tooth_Width_Airgap: number;
-  // Tooth_Width_Average: number;
+  core_length: number;
+  stator_outer_diameter: number;
+  stator_inner_diameter: number;
+  slots: number;
+  slot_depth: number;
+  slot_width: number;
+  stator_lam_thickness_total: number;
+  stator_lam_thickness_steel: number;
+  stator_packing_factor: number;
 }

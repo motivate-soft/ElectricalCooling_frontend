@@ -4,12 +4,13 @@ import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 
 import { catchError } from 'rxjs/operators';
+import { ApiData } from '../data/api';
 
 @Injectable()
-export class ApiService {
-    constructor(
-        private http: HttpClient,
-    ) { }
+export class ApiService extends ApiData {
+    constructor(private http: HttpClient,) {
+        super()
+    }
 
     private formatErrors(error: any) {
         return throwError(error.error);

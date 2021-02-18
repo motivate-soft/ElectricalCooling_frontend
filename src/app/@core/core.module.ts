@@ -27,6 +27,10 @@ import { HtcsService } from './service/htcs.service';
 import { AuthGuard } from './auth-guard.service';
 import { CoolingModelData } from './data/cooling-model';
 import { CoolingModelService } from './service/cooling-model.service';
+import { ApiData } from './data/api';
+import { ApiService } from './service/api.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxAuthJWTInterceptor } from '../token.interceptor';
 
 const socialLinks = [
   {
@@ -47,6 +51,7 @@ const socialLinks = [
 ];
 
 const DATA_SERVICES = [
+  { provide: ApiData, useClass: ApiService },
   { provide: UserData, useClass: UserService },
   { provide: Htcs, useClass: HtcsService },
   { provide: CoolingModelData, useClass: CoolingModelService },
@@ -127,7 +132,6 @@ export const NB_CORE_PROVIDERS = [
     },
 
   }).providers,
-
   NbSecurityModule.forRoot({
     accessControl: {
       guest: {
@@ -141,7 +145,6 @@ export const NB_CORE_PROVIDERS = [
       },
     },
   }).providers,
-
   {
     provide: NbRoleProvider,
     useClass: NbSimpleRoleProvider,
@@ -151,7 +154,8 @@ export const NB_CORE_PROVIDERS = [
   PlayerService,
   SeoService,
   StateService,
-  AuthGuard
+  AuthGuard,
+  // { provide: HTTP_INTERCEPTORS, useClass: NgxAuthJWTInterceptor, multi: true },
 ];
 
 @NgModule({
