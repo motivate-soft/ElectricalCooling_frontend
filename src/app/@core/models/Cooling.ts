@@ -5,9 +5,9 @@ import { Loss } from './Loss';
 import { Passage } from "./Passage";
 
 export interface Cooling {
-    Components: Component[];
-    Faces: Array<Face>;
-    Losses: Array<Loss>;
-    Passages: Array<Passage>;
-    Fluids: Array<Fluid>;
+    components: Component[];
+    faces: Array<Face>;
+    losses: Array<Loss>;
+    passages: Array<Passage>;
+    fluids: Array<Fluid>;
 }

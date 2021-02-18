@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {CoolingModelService} from '../../@core/service/cooling-model.service';
+import { Component, OnInit } from '@angular/core';
+import { CoolingModelService } from '../../@core/service/cooling-model.service';
 
 
 @Component({
@@ -8,15 +8,15 @@ import {CoolingModelService} from '../../@core/service/cooling-model.service';
   styleUrls: ['detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
-  constructor(private service: CoolingModelService) {
-    this.service.loadInitialData()
+  constructor(private cmodelService: CoolingModelService) {
+    this.cmodelService.loadInitialData()
   }
 
   ngOnInit(): void {
   }
 
-  onClickSave():void {
-
+  onClickSave(): void {
+    this.cmodelService.create()
   }
 
 }

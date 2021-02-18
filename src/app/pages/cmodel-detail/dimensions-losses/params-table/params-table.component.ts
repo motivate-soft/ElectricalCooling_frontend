@@ -83,9 +83,9 @@ export class ParamsTableComponent implements OnInit {
       const value = event.newData.value
       console.log('parameter, value, this.title', parameter, value, this.title)
 
-      cmodel.Components.forEach(item => {
-        if (item.Type === this.title) {
-          item.Parameters[parameter] = value
+      cmodel.components.forEach(item => {
+        if (item.type === this.title) {
+          item.parameters[parameter] = value
         }
       })
       this.cmodelService.currentCmodel$.next(cmodel)

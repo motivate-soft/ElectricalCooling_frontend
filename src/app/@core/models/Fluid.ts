@@ -1,5 +1,5 @@
 export interface Fluid {
-  Name: string;
-  Density: number;
-  Conductivity: number;
+  name: string;
+  density: number;
+  conductivity: number;
 }

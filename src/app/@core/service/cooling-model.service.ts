@@ -4,14 +4,14 @@ import { Cooling } from '../models/Cooling';
 import { Observable, Subject } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
-import DEMO_MODEL from '../models/demo.json';
+import modelData from '../models/cooling_model.json';
 
 import { Face } from '../models/Face';
 import { Loss } from '../models/Loss';
 import { Passage } from '../models/Passage';
 import { Fluid } from '../models/Fluid';
 import { CoolingModelData } from '../data/cooling-model';
-import { Component } from "../models/Component";
+import { ConvertKeysToLowerCase } from './utils';
 
 
 @Injectable()
@@ -61,12 +61,12 @@ export class CoolingModelService extends CoolingModelData {
       .get('/cooling' + id);
   }
 
-  create(cmodel: any): Observable<Cooling> {
+  create(cmodel: any = this.currentCmodel): Observable<Cooling> {
     return this.apiService
       .post('/cooling', cmodel);
   }
 
-  update(cmodel: any): Observable<Cooling> {
+  update(cmodel: any = this.currentCmodel): Observable<Cooling> {
     return this.apiService.put(cmodel);
   }
 
@@ -75,28 +75,30 @@ export class CoolingModelService extends CoolingModelData {
   }
 
   loadInitialData(): void {
-    this.currentCmodel$.next(DEMO_MODEL);
+    // console.log('DEMO_MODEL', ConvertKeysToLowerCase(DEMO_MODEL))
+    this.currentCmodel$.next(modelData);
   }
 
   getDimensionTabData(key: string): any[] {
-    const tabObject = this.currentCmodel.Components.find((item) => item.Type === key);
-    return tabObject.Parameters;
+    console.log('___key', key)
+    const tabObject = this.currentCmodel.components.find((item) => item.type === key);
+    return tabObject.parameters;
   }
 
   getFacesData(): Face[] {
-    return this.currentCmodel.Faces;
+    return this.currentCmodel.faces;
   }
 
   getLossesData(): Loss[] {
-    return this.currentCmodel.Losses;
+    return this.currentCmodel.losses;
   }
 
   getPassagesData(): Passage[] {
-    return this.currentCmodel.Passages;
+    return this.currentCmodel.passages;
   }
 
   getFluidsData(): Fluid[] {
-    return this.currentCmodel.Fluids;
+    return this.currentCmodel.fluids;
   }
 
 }

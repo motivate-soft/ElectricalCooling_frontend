@@ -100,9 +100,9 @@ export class FacesTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.data = this.cmodelService.getFacesData().map(item => ({
-      face: item.Name,
-      passage: item.Passage,
-      calculation: item.Calculation
+      face: item.name,
+      passage: item.passage,
+      calculation: item.calculation
     }));
     this.source.load(this.data);
   }
@@ -116,12 +116,10 @@ export class FacesTableComponent implements OnInit {
         },
       })
       .onClose.subscribe(setName => {
-        // const selectedRowIndex = this.data.findIndex(item => item === rowData)
         if (!setName) return;
         const selectedRowIndex = this.data.indexOf(rowData)
-        console.log('selectedRowIndex', selectedRowIndex)
-        console.log('rowData', rowData)
-        console.log('setName', setName)
+        console.log(' selectedRowIndex, rowData, setName', selectedRowIndex, rowData, setName)
+
         const calc = rowData.calculation.split(":")[0]
         this.data[selectedRowIndex] = { ...rowData, calculation: `${calc}:${setName}` }
         this.source.load(this.data)
@@ -140,11 +138,7 @@ export class FacesTableComponent implements OnInit {
     if (window.confirm('Are you sure you want to edit?')) {
       const cmodel = this.cmodelService.currentCmodel
       this.source.getAll().then(arr => {
-        cmodel.Losses = arr.map(obj => ({
-          Face: obj.name,
-          Passage: obj.passage,
-          Calculation: obj.calculation
-        }))
+        cmodel.losses = arr
         this.cmodelService.currentCmodel$.next(cmodel)
         event.confirm.resolve();
       })

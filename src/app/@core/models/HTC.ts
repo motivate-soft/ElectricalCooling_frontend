@@ -1,7 +1,7 @@
 export interface HTC {
   x: number;
-  AG: number;
-  BG: number;
-  BIP: number;
-  TIP: number;
+  ag: number;
+  bg: number;
+  bip: number;
+  tip: number;
 }

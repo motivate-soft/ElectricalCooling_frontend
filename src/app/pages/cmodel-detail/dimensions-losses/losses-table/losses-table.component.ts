@@ -63,7 +63,7 @@ export class LossesTableComponent implements OnInit {
 
   ngOnInit(): void {
     const data = this.cmodelService.getLossesData();
-    this.source.load(makeDataArray(data));
+    this.source.load(data);
   }
 
 
@@ -79,7 +79,7 @@ export class LossesTableComponent implements OnInit {
     if (window.confirm('Are you sure you want to edit?')) {
       const cmodel = this.cmodelService.currentCmodel
       this.source.getAll().then(arr => {
-        cmodel.Losses = arr.map(obj => ({
+        cmodel.losses = arr.map(obj => ({
           Name: obj.name,
           Region: obj.region,
           Loss: obj.loss,

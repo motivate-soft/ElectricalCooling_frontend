@@ -7,80 +7,80 @@ import { HTCcoord } from '../models/HTCcoord';
 const HTCs: HTC[] = [
   {
     x: 0,
-    AG: 47,
-    BG: 23,
-    TIP: 82,
-    BIP: 25,
+    ag: 47,
+    bg: 23,
+    tip: 82,
+    bip: 25,
   },
   {
     x: 0.1,
-    AG: 87,
-    BG: 100,
-    TIP: 43,
-    BIP: 79,
+    ag: 87,
+    bg: 100,
+    tip: 43,
+    bip: 79,
   },
   {
     x: 0.2,
-    AG: 96,
-    BG: 94,
-    TIP: 39,
-    BIP: 53,
+    ag: 96,
+    bg: 94,
+    tip: 39,
+    bip: 53,
   },
   {
     x: 0.3,
-    AG: 96,
-    BG: 58,
-    TIP: 45,
-    BIP: 72,
+    ag: 96,
+    bg: 58,
+    tip: 45,
+    bip: 72,
   },
   {
     x: 0.4,
-    AG: 53,
-    BG: 14,
-    TIP: 11,
-    BIP: 39,
+    ag: 53,
+    bg: 14,
+    tip: 11,
+    bip: 39,
   },
   {
     x: 0.5,
-    AG: 33,
-    BG: 65,
-    TIP: 78,
-    BIP: 21,
+    ag: 33,
+    bg: 65,
+    tip: 78,
+    bip: 21,
   },
   {
     x: 0.6,
-    AG: 25,
-    BG: 38,
-    TIP: 48,
-    BIP: 55,
+    ag: 25,
+    bg: 38,
+    tip: 48,
+    bip: 55,
   },
   {
     x: 0.7,
-    AG: 72,
-    BG: 79,
-    TIP: 72,
-    BIP: 99,
+    ag: 72,
+    bg: 79,
+    tip: 72,
+    bip: 99,
   },
   {
     x: 0.8,
-    AG: 80,
-    BG: 23,
-    TIP: 42,
-    BIP: 35,
+    ag: 80,
+    bg: 23,
+    tip: 42,
+    bip: 35,
   },
   {
     x: 0.9,
-    AG: 78,
-    BG: 24,
-    TIP: 22,
-    BIP: 27,
+    ag: 78,
+    bg: 24,
+    tip: 22,
+    bip: 27,
   },
   {
     x: 1,
-    AG: 51,
-    BG: 81,
-    TIP: 23,
-    BIP: 69,
+    ag: 51,
+    bg: 81,
+    tip: 23,
+    bip: 69,
   },
 ];
 
@@ -98,41 +98,41 @@ export class HtcsService extends Htcs {
   }
 
   getAGs() {
-    return this.htcs.map((htc) => htc.AG);
+    return this.htcs.map((htc) => htc.ag);
   }
 
   getBGs() {
-    return this.htcs.map((htc) => htc.BG);
+    return this.htcs.map((htc) => htc.bg);
   }
 
   getBIPs() {
-    return this.htcs.map((htc) => htc.BIP);
+    return this.htcs.map((htc) => htc.bip);
   }
 
   getTIPs() {
-    return this.htcs.map((htc) => htc.TIP);
+    return this.htcs.map((htc) => htc.tip);
   }
 
   getCoords() {
     const AGsCoords = this.htcs.map((htc) => ({
       name: 'AG',
       x: htc.x,
-      y: htc.AG,
+      y: htc.ag,
     }));
     const BGsCoords = this.htcs.map((htc) => ({
       name: 'BG',
       x: htc.x,
-      y: htc.BG,
+      y: htc.bg,
     }));
     const BIPsCoords = this.htcs.map((htc) => ({
       name: 'BIP',
       x: htc.x,
-      y: htc.BIP,
+      y: htc.bip,
     }));
     const TIPsCoords = this.htcs.map((htc) => ({
       name: 'TIP',
       x: htc.x,
-      y: htc.TIP,
+      y: htc.tip,
     }));
 
     return [...AGsCoords, ...BGsCoords, ...BIPsCoords, ...TIPsCoords];

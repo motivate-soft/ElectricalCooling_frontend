@@ -56,13 +56,7 @@ export class FluidsComponent implements OnInit {
   ngOnInit(): void {
     const data = this.cmodelService.getFluidsData();
 
-    this.source.load(
-      data.map((item) => ({
-        name: item.Name,
-        density: item.Density,
-        conductivity: item.Conductivity,
-      })),
-    );
+    this.source.load(data);
   }
 
   onCreateConfirm(event): void {
@@ -77,11 +71,7 @@ export class FluidsComponent implements OnInit {
     if (window.confirm('Are you sure you want to edit?')) {
       const cmodel = this.cmodelService.currentCmodel
       this.source.getAll().then(arr => {
-        cmodel.Fluids = arr.map(obj => ({
-          Name: obj.name,
-          Density: obj.density,
-          Conductivity: obj.conductivity
-        }))
+        cmodel.fluids = arr
         this.cmodelService.currentCmodel$.next(cmodel)
         event.confirm.resolve();
       })

@@ -64,15 +64,7 @@ export class PassagesComponent implements OnInit {
   ngOnInit(): void {
     const data = this.cmodelService.getPassagesData();
 
-    this.source.load(
-      data.map((item) => ({
-        passage: item.Passage,
-        in_passage: item.In_Passage,
-        out_passage: item.Out_Passage,
-        flow_rate: item.Flow_Rate,
-        fluid: item.Fluid,
-      })),
-    );
+    this.source.load(data);
   }
 
 
@@ -88,13 +80,7 @@ export class PassagesComponent implements OnInit {
     if (window.confirm('Are you sure you want to edit?')) {
       const cmodel = this.cmodelService.currentCmodel
       this.source.getAll().then(arr => {
-        cmodel.Passages = arr.map(obj => ({
-          Passage: obj.passage,
-          In_passage: obj.in_passage,
-          Out_passag: obj.out_passage,
-          Flow_rate: obj.flow_rate,
-          Fluid: obj.fluid
-        }))
+        cmodel.passages = arr
         this.cmodelService.currentCmodel$.next(cmodel)
         event.confirm.resolve();
       })

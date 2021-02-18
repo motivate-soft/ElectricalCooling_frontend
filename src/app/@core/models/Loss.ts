@@ -1,5 +1,5 @@
 export interface Loss {
-  Name: string;
-  Region: string;
-  Loss: number;
+  name: string;
+  region: string;
+  loss: number;
 }

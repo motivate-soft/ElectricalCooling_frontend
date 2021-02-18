@@ -67,10 +67,10 @@ export class HtcsTableComponent implements OnInit {
     }
     this.htcsService.htcs = array.map(item => ({
       x: item[0],
-      AG: item[1],
-      BG: item[2],
-      TIP: item[3],
-      BIP: item[4],
+      ag: item[1],
+      bg: item[2],
+      tip: item[3],
+      bip: item[4],
     }))
     this.source.load(this.htcsService.getCoords());
   }
