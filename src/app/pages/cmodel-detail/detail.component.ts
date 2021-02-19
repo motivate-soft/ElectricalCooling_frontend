@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CoolingModelService } from '../../@core/service/cooling-model.service';
 import { Cooling } from './../../@core/models/Cooling';
+import { Location } from '@angular/common';
+import { NbComponentStatus, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
 
 
 @Component({
@@ -9,30 +12,98 @@ import { Cooling } from './../../@core/models/Cooling';
   styleUrls: ['detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
-  cmodel: Cooling;
+  title: string;
 
-  constructor(private cmodelService: CoolingModelService) {
-  }
+  cmodel: Cooling;
+  idParam: string;
+
+  types: NbComponentStatus[] = [
+    'primary',
+    'success',
+    'info',
+    'warning',
+    'danger',
+  ];
+
+  constructor(
+    private cmodelService: CoolingModelService,
+    private route: ActivatedRoute,
+    private location: Location,
+    private toastrService: NbToastrService,
+  ) { }
 
   ngOnInit(): void {
-    this.cmodelService.loadInitialData()
-    this.cmodel = this.cmodelService.currentCmodel
+    this.getCmodel();
+  }
+
+  getCmodel(): void {
+    this.route.params.subscribe(params => {
+      this.idParam = params[`id`];
+
+      if (!!this.idParam) {
+        this.title = "Edit your model"
+        this.cmodelService.get(parseInt(this.idParam)).subscribe(
+          data => {
+            this.cmodelService.currentCmodel$.next(data);
+            this.cmodel = data
+          },
+          error => {
+            console.log('error', error)
+          }
+        )
+      } else {
+        this.title = "Create a new model"
+        this.cmodelService.loadInitialData()
+        this.cmodel = this.cmodelService.currentCmodel
+      }
+    });
   }
 
   onChangeModelName($event): void {
-    // const cmodel = this.cmodelService.currentCmodel
-    // cmodel.name = $event.target.value
-    // this.cmodelService.currentCmodel$.next(cmodel);
+
   }
 
   onClickSave(): void {
-    this.cmodelService.currentCmodel$.next(this.cmodel);
-    this.cmodelService.create().subscribe(
-      data => console.log('data', data),
-      err => {
-        console.log('err', err)
-      }
-    );
+    if (!!this.idParam) {
+      this.cmodelService.update().subscribe(
+        data => {
+          this.cmodelService.currentCmodel$.next(this.cmodel);
+          this.showToast("success", "Success", "successfully updated!")
+        },
+        error => {
+          this.showToast("warning", "Oops", "Server error!")
+        }
+      );
+    } else {
+      this.cmodelService.create().subscribe(
+        data => {
+          this.cmodelService.currentCmodel$.next(this.cmodel);
+          this.showToast("success", "Success", "successfully created!")
+        },
+        error => {
+          this.showToast("warning", "Oops", "Server error!")
+        }
+      );
+    }
   }
 
+  private showToast(type: NbComponentStatus, title: string = '', body: string = '') {
+    const config = {
+      status: type,
+      destroyByClick: true,
+      duration: 5000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.TOP_RIGHT,
+      preventDuplicates: false,
+    };
+
+    this.toastrService.show(
+      body,
+      title,
+      config);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 }

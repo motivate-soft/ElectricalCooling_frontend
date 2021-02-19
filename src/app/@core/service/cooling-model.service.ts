@@ -31,10 +31,10 @@ export class CoolingModelService extends CoolingModelData {
   ) {
     super()
     this.cmodels$.subscribe(value => this.cmodels = value)
-    this.currentCmodel$.subscribe(value => { console.log('this.currentCmodel$.subscribe', value); this.currentCmodel = value })
+    this.currentCmodel$.subscribe(value => { console.log('___this.currentCmodel$.subscribe___', value); this.currentCmodel = value })
   }
 
-  getCoolingList(params: any): Observable<Cooling[]> {
+  getList(params: any = {}): Observable<Cooling[]> {
     return this.apiService
       .get(
         '/cooling',
@@ -42,7 +42,7 @@ export class CoolingModelService extends CoolingModelData {
       );
   }
 
-  getDefaultCoolingList(): Observable<Cooling[]> {
+  getDefaultList(): Observable<Cooling[]> {
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
         if (token.isValid()) {
@@ -59,31 +59,43 @@ export class CoolingModelService extends CoolingModelData {
 
   get(id: number): Observable<Cooling> {
     return this.apiService
-      .get('/cooling' + id);
+      .get(`/cooling/${id}`);
   }
 
   create(cmodel: any = this.currentCmodel): Observable<Cooling> {
     return this.apiService
-      .post('/cooling/', cmodel).pipe(map(
+      .post('/cooling', cmodel).pipe(map(
         data => {
-          console.log('res', data)
-          // this.currentCmodel$.next(data as Cooling);
+          console.log('create', data)
           return data;
         }
       ))
   }
 
   update(cmodel: any = this.currentCmodel): Observable<Cooling> {
-    return this.apiService.put(cmodel);
+    return this.apiService.put(`/cooling/${cmodel.id}`, cmodel).pipe(map(
+      data => {
+        console.log('update', data)
+        return data;
+      }
+    ));
   }
 
   delete(id: number): Observable<boolean> {
-    return this.apiService.delete(id);
+    return this.apiService.delete('/cooling/' + id).pipe(map(
+      data => {
+        console.log('delete', data)
+        return data;
+      }
+    ));
   }
 
   loadInitialData(): void {
     // console.log('DEMO_MODEL', ConvertKeysToLowerCase(DEMO_MODEL))
-    this.currentCmodel$.next(modelData);
+    this.currentCmodel$.next({
+      ...modelData,
+      id: ''
+    });
   }
 
   getDimensionTabData(key: string): any[] {

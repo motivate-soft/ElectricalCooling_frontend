@@ -7,9 +7,9 @@ import { Passage } from "../models/Passage";
 
 export abstract class CoolingModelData {
 
-    abstract getCoolingList(params: any): Observable<Cooling[]>;
+    abstract getList(params: any): Observable<Cooling[]>;
 
-    abstract getDefaultCoolingList(): Observable<Cooling[]>;
+    abstract getDefaultList(): Observable<Cooling[]>;
 
     abstract get(id: number): Observable<Cooling>;
 

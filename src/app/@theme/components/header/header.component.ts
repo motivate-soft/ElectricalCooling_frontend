@@ -58,8 +58,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
         if (token.isValid()) {
+          console.log('token.getPayload', token.getPayload())
           this.user = token.getPayload(); // here we receive a payload from the token and assigns it to our `user` variable
-          console.log('__this.user', this.user)
         }
       });
 

@@ -23,6 +23,8 @@ import {
 import { NbAuthJWTInterceptor, NB_AUTH_TOKEN_INTERCEPTOR_FILTER } from '@nebular/auth';
 import { NgxAuthJWTInterceptor } from './token.interceptor';
 import { HeaderInterceptor } from './header.interceptor';
+import { APP_BASE_HREF } from '@angular/common';
+import { AuthGuard } from './@core/auth-guard.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,24 +39,36 @@ import { HeaderInterceptor } from './header.interceptor';
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
-    NbChatModule.forRoot({
-      messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
-    }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
   ],
   bootstrap: [AppComponent],
   providers: [
+    /**
+     * Approach 1
+     */
+    // {
+    //   provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
+    //   useValue: function (req: HttpRequest<any>) {
+    //     return req.url === '/api/auth/jwt/refresh/';
+    //   },
+    // },
+    // { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
+
+    /**
+     * Approach 2
+     */
+    { provide: APP_BASE_HREF, useValue: "/" },
+    { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
     {
       provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
-      useValue: function (req: HttpRequest<any>) {
-        return req.url === '/api/auth/jwt/refresh/';
-      },
+      useValue: req => {
+        return false;
+      }
     },
-    { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }, // header config interceptor
 
-    // { provide: HTTP_INTERCEPTORS, useClass: NgxAuthJWTInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: NgxAuthJWTInterceptor, multi: true },  // custom token name -> "JWT" interceptor
   ]
 })
 export class AppModule {

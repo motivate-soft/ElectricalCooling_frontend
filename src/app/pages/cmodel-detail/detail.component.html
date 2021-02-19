@@ -1,12 +1,15 @@
 <nb-card>
-  <nb-card-header><h5>Create a new Cooling Model</h5></nb-card-header>
+  <nb-card-header>
+    <nb-icon icon="arrow-back-outline" (click)="goBack()"></nb-icon>
+    <h5 class="text-center">{{ title }}</h5>
+  </nb-card-header>
   <nb-card-body>
     <div class="row">
       <div class="col-sm-6">
-        <div class="form-group row">
+        <div class="form-group row name-input-box">
           <label
             for="modelName"
-            class="label col-sm-3 col-lg-2 form-control-label"
+            class="label col-sm-6 col-lg-3 form-control-label"
           >
             Model Name
           </label>
@@ -17,7 +20,7 @@
               fullWidth
               id="modelName"
               [(ngModel)]="cmodel.name"
-              placeholder="Cooling model"
+              placeholder="Input your model name..."
               (input)="onChangeModelName($event)"
             />
           </div>

@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import {
   NbActionsModule,
   NbButtonModule,
@@ -7,16 +7,17 @@ import {
   NbIconModule,
   NbInputModule,
   NbMenuModule,
+  NbPopoverModule,
   NbSelectModule,
   NbUserModule
 } from '@nebular/theme';
-import {FormsModule as ngFormsModule} from '@angular/forms';
+import { FormsModule as ngFormsModule } from '@angular/forms';
 
-import {ThemeModule} from '../@theme/theme.module';
-import {PagesRoutingModule} from './pages-routing.module';
-import {PagesComponent} from './pages.component';
-import {CmodelListComponent} from './cmodel-list/cmodel-list.component';
-import {ProfileComponent} from './profile/profile.component';
+import { ThemeModule } from '../@theme/theme.module';
+import { PagesRoutingModule } from './pages-routing.module';
+import { PagesComponent } from './pages.component';
+import { CmodelListComponent } from './cmodel-list/cmodel-list.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import {ProfileComponent} from './profile/profile.component';
     NbCardModule,
     NbSelectModule,
     NbIconModule,
+    NbPopoverModule,
     ngFormsModule,
   ],
   declarations: [PagesComponent, CmodelListComponent, ProfileComponent],

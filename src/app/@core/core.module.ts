@@ -75,7 +75,7 @@ export const NB_CORE_PROVIDERS = [
         login: {
           endpoint: '/api/auth/jwt/create/',
           redirect: {
-            success: '/pages/dimensions-and-losses',
+            success: '/pages/cmodel',
             failure: null,
           },
         },
@@ -97,15 +97,15 @@ export const NB_CORE_PROVIDERS = [
         },
         token: {
           class: NbAuthJWTToken,
-          key: 'token',
+          key: 'access',
         },
         refreshToken: {
           endpoint: '/api/auth/jwt/refresh/',
           method: 'post',
-          requireValidToken: true,
+          requireValidToken: false,
           redirect: {
             success: null,
-            failure: null,
+            failure: '/auth/login',
           },
         },
         errors: {
@@ -155,7 +155,6 @@ export const NB_CORE_PROVIDERS = [
   SeoService,
   StateService,
   AuthGuard,
-  // { provide: HTTP_INTERCEPTORS, useClass: NgxAuthJWTInterceptor, multi: true },
 ];
 
 @NgModule({
