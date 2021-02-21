@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CoolingModelService } from '../../@core/service/cooling-model.service';
 import { Cooling } from './../../@core/models/Cooling';
 import { Location } from '@angular/common';
@@ -28,6 +28,7 @@ export class DetailComponent implements OnInit {
   constructor(
     private cmodelService: CoolingModelService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private toastrService: NbToastrService,
   ) { }
@@ -69,6 +70,7 @@ export class DetailComponent implements OnInit {
         data => {
           this.cmodelService.currentCmodel$.next(this.cmodel);
           this.showToast("success", "Success", "successfully updated!")
+          this.router.navigate(['/pages/cmodel']);
         },
         error => {
           this.showToast("warning", "Oops", "Server error!")
@@ -79,6 +81,7 @@ export class DetailComponent implements OnInit {
         data => {
           this.cmodelService.currentCmodel$.next(this.cmodel);
           this.showToast("success", "Success", "successfully created!")
+          this.router.navigate(['/pages/cmodel']);
         },
         error => {
           this.showToast("warning", "Oops", "Server error!")

@@ -18,15 +18,15 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Model Name</th>
-              <th scope="col">Admin</th>
+              <th scope="col">Created By</th>
               <th scope="col">**</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let cmodel of cmodels">
+            <tr *ngFor="let cmodel of cmodels; let i = index">
               <th scope="row">
                 <a routerLink="/pages/cmodel/{{ cmodel.id }}">
-                  <span class="badge">{{ cmodel.id }}</span>
+                  <span class="badge">{{ i + 1 }}</span>
                 </a>
               </th>
               <td>
@@ -34,7 +34,9 @@
                   <span class="badge">{{ cmodel.name }}</span>
                 </a>
               </td>
-              <td>{{ cmodel.owner }}</td>
+              <td>
+                {{ cmodel.owner.first_name + " " + cmodel.owner.last_name }}
+              </td>
               <td>
                 <nb-icon
                   icon="close-outline"
@@ -44,7 +46,7 @@
             </tr>
           </tbody>
         </table>
-        <nb-alert *ngIf="cmodels.length === 0" outline="success" role="alert">
+        <nb-alert *ngIf="cmodels?.length === 0" outline="success" role="alert">
           <h5 class="d-block text-center">No model found</h5>
         </nb-alert>
       </div>

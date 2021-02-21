@@ -30,41 +30,47 @@ export class CoolingModelService extends CoolingModelData {
     private authService: NbAuthService,
   ) {
     super()
-    this.cmodels$.subscribe(value => this.cmodels = value)
-    this.currentCmodel$.subscribe(value => { console.log('___this.currentCmodel$.subscribe___', value); this.currentCmodel = value })
-  }
-
-  getList(params: any = {}): Observable<Cooling[]> {
-    return this.apiService
-      .get(
-        '/cooling',
-        new HttpParams({ fromObject: params })
-      );
-  }
-
-  getDefaultList(): Observable<Cooling[]> {
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
         if (token.isValid()) {
           this.user = token.getPayload();
         }
       });
-    const params = { author: this.user.id }
+    this.cmodels$.subscribe(value => this.cmodels = value)
+    this.currentCmodel$.subscribe(value => { console.log('___this.currentCmodel$.subscribe___', value); this.currentCmodel = value })
+  }
+
+  getList(params: any = {}): Observable<Cooling[]> {
+    if (this.user.is_staff) {
+      return this.apiService
+        .get(
+          '/cooling',
+          new HttpParams({ fromObject: params })
+        );
+    }
     return this.apiService
       .get(
-        '/cooling',
+        '/cooling/me',
+        new HttpParams({ fromObject: params })
+      );
+  }
+
+  getMyList(params: any = {}): Observable<Cooling[]> {
+    return this.apiService
+      .get(
+        '/cooling/me',
         new HttpParams({ fromObject: params })
       );
   }
 
   get(id: number): Observable<Cooling> {
     return this.apiService
-      .get(`/cooling/${id}`);
+      .get(`/cooling/me/${id}`);
   }
 
   create(cmodel: any = this.currentCmodel): Observable<Cooling> {
     return this.apiService
-      .post('/cooling', cmodel).pipe(map(
+      .post('/cooling/me', cmodel).pipe(map(
         data => {
           console.log('create', data)
           return data;
@@ -73,7 +79,9 @@ export class CoolingModelService extends CoolingModelData {
   }
 
   update(cmodel: any = this.currentCmodel): Observable<Cooling> {
-    return this.apiService.put(`/cooling/${cmodel.id}`, cmodel).pipe(map(
+    const { owner } = cmodel
+    cmodel.owner = owner.id
+    return this.apiService.put(`/cooling/me/${cmodel.id}`, cmodel).pipe(map(
       data => {
         console.log('update', data)
         return data;
@@ -82,7 +90,7 @@ export class CoolingModelService extends CoolingModelData {
   }
 
   delete(id: number): Observable<boolean> {
-    return this.apiService.delete('/cooling/' + id).pipe(map(
+    return this.apiService.delete('/cooling/me/' + id).pipe(map(
       data => {
         console.log('delete', data)
         return data;

@@ -9,7 +9,7 @@ export abstract class CoolingModelData {
 
     abstract getList(params: any): Observable<Cooling[]>;
 
-    abstract getDefaultList(): Observable<Cooling[]>;
+    abstract getMyList(params: any): Observable<Cooling[]>;
 
     abstract get(id: number): Observable<Cooling>;
 
