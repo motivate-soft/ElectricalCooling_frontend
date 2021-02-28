@@ -65,7 +65,7 @@ export class FacesTableComponent implements OnInit {
       // position: 'right'
     },
     columns: {
-      face: {
+      name: {
         title: 'Face',
         type: 'string'
       },
@@ -99,12 +99,9 @@ export class FacesTableComponent implements OnInit {
   constructor(private cmodelService: CoolingModelService, private dialogService: NbDialogService) { }
 
   ngOnInit(): void {
-    this.data = this.cmodelService.getFacesData().map(item => ({
-      face: item.name,
-      passage: item.passage,
-      calculation: item.calculation
-    }));
-    this.source.load(this.data);
+    this.cmodelService.currentCmodel$.subscribe(value => {
+      this.source.load(value.faces)
+    })
   }
 
   openModal(rowData: any) {
@@ -137,11 +134,10 @@ export class FacesTableComponent implements OnInit {
   onEditConfirm(event): void {
     if (window.confirm('Are you sure you want to edit?')) {
       const cmodel = this.cmodelService.currentCmodel
-      this.source.getAll().then(arr => {
-        cmodel.losses = arr
-        this.cmodelService.currentCmodel$.next(cmodel)
-        event.confirm.resolve();
-      })
+      const index = cmodel.faces.indexOf(event.data)
+      cmodel.faces[index] = event.newData
+      this.cmodelService.currentCmodel$.next(cmodel)
+      // event.confirm.resolve();
     } else {
       event.confirm.reject();
     }

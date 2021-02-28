@@ -14,7 +14,15 @@ import { NbComponentStatus, NbGlobalPhysicalPosition, NbToastrService } from '@n
 export class DetailComponent implements OnInit {
   title: string;
 
-  cmodel: Cooling;
+  cmodel: Cooling = {
+    id: '',
+    name: '',
+    components: [],
+    faces: [],
+    losses: [],
+    passages: [],
+    fluids: []
+  };
   idParam: string;
 
   types: NbComponentStatus[] = [

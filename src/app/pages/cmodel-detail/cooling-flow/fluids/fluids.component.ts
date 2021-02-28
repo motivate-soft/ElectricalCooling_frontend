@@ -54,9 +54,9 @@ export class FluidsComponent implements OnInit {
   constructor(private cmodelService: CoolingModelService) { }
 
   ngOnInit(): void {
-    const data = this.cmodelService.getFluidsData();
-
-    this.source.load(data);
+    this.cmodelService.currentCmodel$.subscribe(value => {
+      this.source.load(value.fluids);
+    })
   }
 
   onCreateConfirm(event): void {
@@ -70,11 +70,10 @@ export class FluidsComponent implements OnInit {
   onEditConfirm(event): void {
     if (window.confirm('Are you sure you want to edit?')) {
       const cmodel = this.cmodelService.currentCmodel
-      this.source.getAll().then(arr => {
-        cmodel.fluids = arr
-        this.cmodelService.currentCmodel$.next(cmodel)
-        event.confirm.resolve();
-      })
+      const index = cmodel.fluids.indexOf(event.data)
+      cmodel.fluids[index] = event.newData
+      this.cmodelService.currentCmodel$.next(cmodel)
+      // event.confirm.resolve();
     } else {
       event.confirm.reject();
     }

@@ -41,12 +41,6 @@ const SETTINGS = {
   columns: LOSSES_COLUMNS,
 };
 
-const makeDataArray = (arr) =>
-  arr.map((item) => ({
-    name: item.Name,
-    region: item.Region,
-    loss: item.Loss,
-  }));
 
 @Component({
   selector: 'app-losses',
@@ -56,17 +50,15 @@ const makeDataArray = (arr) =>
 
 export class LossesTableComponent implements OnInit {
   settings = SETTINGS;
-
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private cmodelService: CoolingModelService) { }
 
   ngOnInit(): void {
-    const data = this.cmodelService.getLossesData();
-    this.source.load(data);
+    this.cmodelService.currentCmodel$.subscribe(value => {
+      this.source.load(value.losses);
+    })
   }
-
-
   onCreateConfirm(event): void {
 
   }
@@ -78,15 +70,10 @@ export class LossesTableComponent implements OnInit {
   onEditConfirm(event): void {
     if (window.confirm('Are you sure you want to edit?')) {
       const cmodel = this.cmodelService.currentCmodel
-      this.source.getAll().then(arr => {
-        cmodel.losses = arr.map(obj => ({
-          Name: obj.name,
-          Region: obj.region,
-          Loss: obj.loss,
-        }))
-        this.cmodelService.currentCmodel$.next(cmodel)
-        event.confirm.resolve();
-      })
+      const index = cmodel.losses.indexOf(event.data)
+      cmodel.losses[index] = event.newData
+      this.cmodelService.currentCmodel$.next(cmodel)
+      // event.confirm.resolve();
     } else {
       event.confirm.reject();
     }

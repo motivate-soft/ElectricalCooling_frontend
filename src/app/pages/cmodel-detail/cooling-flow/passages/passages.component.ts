@@ -62,11 +62,10 @@ export class PassagesComponent implements OnInit {
   constructor(private cmodelService: CoolingModelService) { }
 
   ngOnInit(): void {
-    const data = this.cmodelService.getPassagesData();
-
-    this.source.load(data);
+    this.cmodelService.currentCmodel$.subscribe(value => {
+      this.source.load(value.passages);
+    })
   }
-
 
   onCreateConfirm(event): void {
 
@@ -79,11 +78,10 @@ export class PassagesComponent implements OnInit {
   onEditConfirm(event): void {
     if (window.confirm('Are you sure you want to edit?')) {
       const cmodel = this.cmodelService.currentCmodel
-      this.source.getAll().then(arr => {
-        cmodel.passages = arr
-        this.cmodelService.currentCmodel$.next(cmodel)
-        event.confirm.resolve();
-      })
+      const index = cmodel.passages.indexOf(event.data)
+      cmodel.passages[index] = event.newData
+      this.cmodelService.currentCmodel$.next(cmodel)
+      // event.confirm.resolve();
     } else {
       event.confirm.reject();
     }

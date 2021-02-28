@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Stator } from '../../../../@core/models/components/Stator';
 import { CoolingModelService } from '../../../../@core/service/cooling-model.service';
+import { Cooling } from './../../../../@core/models/Cooling';
+import { map } from 'rxjs/operators';
 
 
 const SETTINGS = {
@@ -57,14 +59,17 @@ export class ParamsTableComponent implements OnInit {
   @Input() title: string;
 
   settings = SETTINGS;
-  data: any[];
+  _cmodel: Cooling;
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private cmodelService: CoolingModelService) { }
 
   ngOnInit(): void {
-    this.data = this.cmodelService.getDimensionTabData(this.title);
-    this.source.load(makeDataArray(this.data));
+    this.cmodelService.currentCmodel$.subscribe(value => {
+      const tabObject = value.components.find((item) => item.type === this.title);
+      this._cmodel = value
+      this.source.load(makeDataArray(tabObject.parameters));
+    })
   }
 
   onDeleteConfirm(event): void {
@@ -77,19 +82,12 @@ export class ParamsTableComponent implements OnInit {
 
   onEditConfirm(event): void {
     if (window.confirm('Are you sure you want to edit?')) {
-      console.log("editConfirm", event, event.newData);
-      const cmodel = this.cmodelService.currentCmodel
-      const parameter = event.newData.parameter
-      const value = event.newData.value
-      console.log('parameter, value, this.title', parameter, value, this.title)
-
-      cmodel.components.forEach(item => {
-        if (item.type === this.title) {
-          item.parameters[parameter] = value
-        }
-      })
-      this.cmodelService.currentCmodel$.next(cmodel)
-      event.confirm.resolve();
+      const index = this._cmodel.components.findIndex(item => item.type === this.title)
+      this._cmodel.components[index].parameters[event.newData.parameter] = event.newData.value
+      console.log('event', event)
+      console.log('this._cmodel', this._cmodel)
+      this.cmodelService.currentCmodel$.next(this._cmodel)
+      // event.confirm.resolve();
     } else {
       event.confirm.reject();
     }
