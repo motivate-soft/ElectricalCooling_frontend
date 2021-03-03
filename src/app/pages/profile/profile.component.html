@@ -1,46 +1,265 @@
 <nb-card>
   <nb-card-header class="text-center"><h5>Profile</h5></nb-card-header>
   <nb-card-body>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label for="inputFirstName" class="label">First Name</label>
-          <input
-            type="text"
-            nbInput
-            fullWidth
-            id="inputFirstName"
-            placeholder="First Name"
-          />
+    <form [formGroup]="profileForm">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputFirstName" class="label">First Name</label>
+            <input
+              type="text"
+              nbInput
+              fullWidth
+              id="inputFirstName"
+              formControlName="firstName"
+              [(ngModel)]="user.firstName"
+              placeholder="First Name"
+              [status]="
+                pf.firstName.touched
+                  ? pf.firstName.invalid
+                    ? 'danger'
+                    : 'success'
+                  : 'basic'
+              "
+              [attr.aria-invalid]="
+                pf.firstName.errors && pf.firstName.touched ? true : null
+              "
+            />
+          </div>
+          <ng-container *ngIf="pf.firstName.errors">
+            <p
+              class="caption status-danger"
+              *ngIf="pf.firstName.touched && pf.firstName.errors?.required"
+            >
+              First Name is required!
+            </p>
+          </ng-container>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputLastName" class="label">Last Name</label>
+            <input
+              type="text"
+              nbInput
+              fullWidth
+              id="inputLastName"
+              formControlName="lastName"
+              [(ngModel)]="user.lastName"
+              placeholder="Last Name"
+              [status]="
+                pf.lastName.touched
+                  ? pf.lastName.invalid
+                    ? 'danger'
+                    : 'success'
+                  : 'basic'
+              "
+              [attr.aria-invalid]="
+                pf.lastName.touched && pf.lastName.errors ? true : null
+              "
+            />
+          </div>
+          <ng-container *ngIf="pf.lastName.touched && pf.lastName.errors">
+            <p
+              class="caption status-danger"
+              *ngIf="pf.lastName.errors?.required"
+            >
+              Last Name is required!
+            </p>
+          </ng-container>
         </div>
       </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label for="inputLastName" class="label">Last Name</label>
-          <input
-            type="text"
-            nbInput
-            fullWidth
-            id="inputLastName"
-            placeholder="Last Name"
-          />
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputEmail" class="label">Email</label>
+            <input
+              type="email"
+              nbInput
+              fullWidth
+              id="inputEmail"
+              formControlName="email"
+              [(ngModel)]="user.email"
+              placeholder="Email"
+              [status]="
+                pf.email.touched
+                  ? pf.email.invalid
+                    ? 'danger'
+                    : 'success'
+                  : 'basic'
+              "
+              [attr.aria-invalid]="
+                pf.email.touched && pf.email.errors ? true : null
+              "
+            />
+          </div>
+          <ng-container *ngIf="pf.email.touched && pf.email.errors">
+            <p class="caption status-danger" *ngIf="pf.email.errors?.required">
+              Email is required!
+            </p>
+          </ng-container>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label for="inputEmail" class="label">Email</label>
-          <input
-            type="email"
-            nbInput
-            fullWidth
-            id="inputEmail"
-            placeholder="Email"
-          />
+      <button
+        nbButton
+        type="submit"
+        status="primary"
+        [disabled]="!profileForm.valid"
+        [class.btn-pulse]="submitted"
+        (click)="saveProfile()"
+      >
+        Save
+      </button>
+    </form>
+  </nb-card-body>
+</nb-card>
+
+<nb-card>
+  <nb-card-header class="text-center"><h5>Change Password</h5></nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="passwordForm">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="currentPassword" class="label">Current Password</label>
+            <input
+              nbInput
+              fullWidth
+              type="password"
+              id="currentPassword"
+              formControlName="currentPassword"
+              [(ngModel)]="currentPassword"
+              placeholder="Current Password"
+              [status]="
+                cp.currentPassword.touched
+                  ? cp.currentPassword.invalid
+                    ? 'danger'
+                    : 'success'
+                  : 'basic'
+              "
+              [attr.aria-invalid]="
+                cp.currentPassword.touched && cp.currentPassword.errors
+                  ? true
+                  : null
+              "
+            />
+            <ng-container
+              *ngIf="cp.currentPassword.touched && cp.currentPassword.errors"
+            >
+              <p
+                class="caption status-danger"
+                *ngIf="cp.currentPassword.errors?.required"
+              >
+                Password is required!
+              </p>
+            </ng-container>
+          </div>
         </div>
       </div>
-    </div>
-    <button type="submit" nbButton>Save</button>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="newPassword" class="label">New Password</label>
+            <input
+              nbInput
+              fullWidth
+              type="password"
+              id="newPassword"
+              formControlName="newPassword"
+              [(ngModel)]="newPassword"
+              placeholder="New Password"
+              [status]="
+                cp.newPassword.touched
+                  ? cp.newPassword.invalid
+                    ? 'danger'
+                    : 'success'
+                  : 'basic'
+              "
+              [attr.aria-invalid]="
+                cp.newPassword.touched && cp.newPassword.errors ? true : null
+              "
+            />
+          </div>
+          <ng-container *ngIf="cp.newPassword.touched && cp.newPassword.errors">
+            <p
+              class="caption status-danger"
+              *ngIf="cp.newPassword.errors?.required"
+            >
+              New Password is required!
+            </p>
+            <p
+              class="caption status-danger"
+              *ngIf="cp.newPassword.errors?.minlength"
+            >
+              Password length should be at least
+              {{ cp.newPassword.errors?.minlength.requiredLength }} characters!
+            </p>
+            <p
+              class="caption status-danger"
+              *ngIf="cp.newPassword.errors?.maxlength"
+            >
+              Password length can't be more than
+              {{ cp.newPassword.errors?.maxlength.requiredLength }} characters!
+            </p>
+          </ng-container>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="repeatPassword" class="label">Repeat Password</label>
+            <input
+              nbInput
+              fullWidth
+              type="password"
+              id="repeatPassword"
+              formControlName="repeatPassword"
+              [(ngModel)]="repeatPassword"
+              placeholder="Repeat Password"
+              [status]="
+                cp.repeatPassword.touched
+                  ? cp.repeatPassword.invalid
+                    ? 'danger'
+                    : 'success'
+                  : 'basic'
+              "
+              [attr.aria-invalid]="
+                cp.repeatPassword.touched && cp.repeatPassword.errors
+                  ? true
+                  : null
+              "
+            />
+          </div>
+          <ng-container *ngIf="cp.repeatPassword.touched">
+            <p
+              class="caption status-danger"
+              *ngIf="cp.repeatPassword.errors?.required"
+            >
+              Password confirmation is required!
+            </p>
+
+            <!-- Formgroup Validator -->
+            <!-- <p
+              class="caption status-danger"
+              *ngIf="passwordForm.errors?.mismatch"
+            >
+              Password doesn't match!
+            </p> -->
+
+            <!-- Formgroup Control Validator -->
+            <p
+              class="caption status-danger"
+              *ngIf="cp.repeatPassword.errors?.mismatch"
+            >
+              Password doesn't match!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+      <div class="row action-buttons-container">
+        <button type="submit" nbButton (click)="setPassword()">Save</button>
+        <button type="submit" nbButton (click)="cancelResetPassword()">
+          Cancel
+        </button>
+      </div>
+    </form>
   </nb-card-body>
 </nb-card>

@@ -20,14 +20,4 @@ export abstract class CoolingModelData {
     abstract delete(id: number): Observable<boolean>;
 
     abstract loadInitialData(): void;
-
-    abstract getDimensionTabData(key: string): any[];
-
-    abstract getFacesData(): Face[];
-
-    abstract getLossesData(): Loss[];
-
-    abstract getPassagesData(): Passage[];
-
-    abstract getFluidsData(): Fluid[];
 }

@@ -87,6 +87,22 @@ export const NB_CORE_PROVIDERS = [
             failure: null,
           },
         },
+        requestPass: {
+          endpoint: '/api/auth/users/reset_password/',
+          redirect: {
+            success: null,
+            failure: null,
+          },
+        },
+        resetPass: {
+          endpoint: '/api/auth/users/reset_password_confirm/',
+          method: 'post',
+          redirect: {
+            success: null,
+            failure: null,
+          },
+          resetPasswordTokenKey: 'token',
+        },
         logout: {
           endpoint: '/api/auth/jwt/blacklist/',
           method: 'post',
@@ -119,6 +135,16 @@ export const NB_CORE_PROVIDERS = [
             return res.error ? res.error.message : options[module].defaultErrors;
           },
         },
+        // validation: {
+        //   password: {
+        //     required: true,
+        //     minLength: 8,
+        //     maxLength: 100
+        //   },
+        //   email: {
+        //     required: true,
+        //   }
+        // }
       }),
     ],
     forms: {

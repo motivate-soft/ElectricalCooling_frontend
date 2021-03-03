@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CoolingModelService } from '../../@core/service/cooling-model.service';
 import { Cooling } from './../../@core/models/Cooling';
 import { Location } from '@angular/common';
-import { NbComponentStatus, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
+import { NgxToastrService } from './../../@core/service/toast.service';
 
 
 @Component({
@@ -25,20 +25,12 @@ export class DetailComponent implements OnInit {
   };
   idParam: string;
 
-  types: NbComponentStatus[] = [
-    'primary',
-    'success',
-    'info',
-    'warning',
-    'danger',
-  ];
-
   constructor(
     private cmodelService: CoolingModelService,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
-    private toastrService: NbToastrService,
+    private toastrService: NgxToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -77,41 +69,25 @@ export class DetailComponent implements OnInit {
       this.cmodelService.update().subscribe(
         data => {
           this.cmodelService.currentCmodel$.next(this.cmodel);
-          this.showToast("success", "Success", "successfully updated!")
+          this.toastrService.showToast("success", "Success", "successfully updated!")
           this.router.navigate(['/pages/cmodel']);
         },
         error => {
-          this.showToast("warning", "Oops", "Server error!")
+          this.toastrService.showToast("warning", "Oops", "Server error!")
         }
       );
     } else {
       this.cmodelService.create().subscribe(
         data => {
           this.cmodelService.currentCmodel$.next(this.cmodel);
-          this.showToast("success", "Success", "successfully created!")
+          this.toastrService.showToast("success", "Success", "successfully created!")
           this.router.navigate(['/pages/cmodel']);
         },
         error => {
-          this.showToast("warning", "Oops", "Server error!")
+          this.toastrService.showToast("warning", "Oops", "Server error!")
         }
       );
     }
-  }
-
-  private showToast(type: NbComponentStatus, title: string = '', body: string = '') {
-    const config = {
-      status: type,
-      destroyByClick: true,
-      duration: 5000,
-      hasIcon: true,
-      position: NbGlobalPhysicalPosition.TOP_RIGHT,
-      preventDuplicates: false,
-    };
-
-    this.toastrService.show(
-      body,
-      title,
-      config);
   }
 
   goBack(): void {

@@ -105,26 +105,4 @@ export class CoolingModelService extends CoolingModelData {
       id: ''
     });
   }
-
-  getDimensionTabData(key: string): any[] {
-    const tabObject = this.currentCmodel.components.find((item) => item.type === key);
-    return tabObject.parameters;
-  }
-
-  getFacesData(): Face[] {
-    return this.currentCmodel.faces;
-  }
-
-  getLossesData(): Loss[] {
-    return this.currentCmodel.losses;
-  }
-
-  getPassagesData(): Passage[] {
-    return this.currentCmodel.passages;
-  }
-
-  getFluidsData(): Fluid[] {
-    return this.currentCmodel.fluids;
-  }
-
 }

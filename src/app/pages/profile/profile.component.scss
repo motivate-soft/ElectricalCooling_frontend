@@ -1,7 +1,3 @@
-nb-checkbox {
-  margin-bottom: 1rem;
-}
-
 .form-inline [fullWidth] {
   flex: 1;
 }
@@ -10,6 +6,10 @@ nb-checkbox {
   margin: 0 1.5rem 1.5rem 0;
 }
 
-nb-card.inline-form-card nb-card-body {
-  padding-bottom: 0;
+.action-buttons-container {
+  display: flex;
+  justify-content: center;
+  button:nth-child(1) {
+    margin-right: 20px;
+  }
 }

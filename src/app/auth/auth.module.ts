@@ -9,6 +9,8 @@ import { NbAlertModule, NbButtonModule, NbCheckboxModule, NbInputModule } from '
 import { NgxLoginComponent } from './login/login.component';
 import { NgxRegisterComponent } from './register/register.component';
 import { NgxLogoutComponent } from './logout/logout.component';
+import { NgxResetPasswordComponent } from './reset-password/reset-password.component';
+import { NgxRequestPasswordComponent } from './request-password/request-password.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { NgxLogoutComponent } from './logout/logout.component';
   declarations: [
     NgxLoginComponent,
     NgxRegisterComponent,
-    NgxLogoutComponent
+    NgxLogoutComponent,
+    NgxRequestPasswordComponent,
+    NgxResetPasswordComponent,
   ],
 })
 export class NgxAuthModule {

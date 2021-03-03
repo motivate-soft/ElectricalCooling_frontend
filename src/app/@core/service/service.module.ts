@@ -5,12 +5,14 @@ import { HtcsService } from './htcs.service';
 import { CoolingModelService } from './cooling-model.service';
 import { UserService } from './users.service';
 import { ApiService } from './api.service';
+import { NgxToastrService } from './toast.service';
 
 const SERVICES = [
   ApiService,
   HtcsService,
   UserService,
   CoolingModelService,
+  NgxToastrService,
 ];
 
 @NgModule({

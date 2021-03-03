@@ -11,7 +11,7 @@ import {
   NbSelectModule,
   NbUserModule
 } from '@nebular/theme';
-import { FormsModule as ngFormsModule } from '@angular/forms';
+import { FormsModule as ngFormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesRoutingModule } from './pages-routing.module';
@@ -35,6 +35,7 @@ import { ProfileComponent } from './profile/profile.component';
     NbIconModule,
     NbPopoverModule,
     ngFormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [PagesComponent, CmodelListComponent, ProfileComponent],
 })
