@@ -1,0 +1,22 @@
+<nb-card>
+  <nb-card-header>RotorWinding-Leading</nb-card-header>
+  <nb-card-body>
+    <chart
+      type="line"
+      [data]="rotorChartData"
+      [options]="options"
+      style="min-height: 1000px"
+    ></chart>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header>StatorWinding-Leading</nb-card-header>
+  <nb-card-body>
+    <chart
+      type="line"
+      [data]="statorChartData"
+      [options]="options"
+      style="min-height: 1000px"
+    ></chart>
+  </nb-card-body>
+</nb-card>

@@ -67,9 +67,9 @@ export class ParamsTableComponent implements OnInit {
   ngOnInit(): void {
     this.cmodelService.currentCmodel$.subscribe(value => {
       const tabObject = value.components.find((item) => item.type === this.title);
-      this._cmodel = value
+      this._cmodel = value;
       this.source.load(makeDataArray(tabObject.parameters));
-    })
+    });
   }
 
   onDeleteConfirm(event): void {
@@ -82,11 +82,11 @@ export class ParamsTableComponent implements OnInit {
 
   onEditConfirm(event): void {
     if (window.confirm('Are you sure you want to edit?')) {
-      const index = this._cmodel.components.findIndex(item => item.type === this.title)
-      this._cmodel.components[index].parameters[event.newData.parameter] = event.newData.value
-      console.log('event', event)
-      console.log('this._cmodel', this._cmodel)
-      this.cmodelService.currentCmodel$.next(this._cmodel)
+      const index = this._cmodel.components.findIndex(item => item.type === this.title);
+      this._cmodel.components[index].parameters[event.newData.parameter] = event.newData.value;
+      console.log('event', event);
+      console.log('this._cmodel', this._cmodel);
+      this.cmodelService.currentCmodel$.next(this._cmodel);
       // event.confirm.resolve();
     } else {
       event.confirm.reject();

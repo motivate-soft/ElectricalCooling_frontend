@@ -6,11 +6,11 @@ import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 
 @Injectable()
 export class UserService extends UserData {
-  user: User
+  user: User;
 
   constructor(private apiService: ApiService,
     private authService: NbAuthService) {
-    super()
+    super();
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
         if (token.isValid()) {
@@ -23,32 +23,32 @@ export class UserService extends UserData {
     return this.apiService
       .get(
         '/auth/users/me/',
-      )
+      );
   }
 
   getUsers(): Observable<any> {
     return this.apiService
       .get(
         '/auth/users',
-      )
+      );
   }
 
   updateUser(user: User): Observable<User> {
     return this.apiService
       .put(
-        '/auth/users/me/', user
-      )
+        '/auth/users/me/', user,
+      );
   }
 
   setPassword(auth: any) {
-    return this.apiService.post('/auth/users/set_password/', auth)
+    return this.apiService.post('/auth/users/set_password/', auth);
   }
 
   resetPassword(data: any) {
     const auth = {
       ...data,
-      email: this.user.email
-    }
-    return this.apiService.post('/auth/users/reset_password/', auth)
+      email: this.user.email,
+    };
+    return this.apiService.post('/auth/users/reset_password/', auth);
   }
 }

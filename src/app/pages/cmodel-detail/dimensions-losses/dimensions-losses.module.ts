@@ -8,7 +8,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ParamsTableComponent } from './params-table/params-table.component';
 import { LossesTableComponent } from './losses-table/losses-table.component';
 import { DimensionsLossesComponent } from './dimensions-losses.component';
-import {HeatTransferCoefficientsComponent} from "../heat-transfer-coefficients/heat-transfer-coefficients.component";
+import {HeatTransferCoefficientsComponent} from '../heat-transfer-coefficients/heat-transfer-coefficients.component';
 
 @NgModule({
   imports: [
@@ -27,7 +27,7 @@ import {HeatTransferCoefficientsComponent} from "../heat-transfer-coefficients/h
     LossesTableComponent,
   ],
   exports: [
-    DimensionsLossesComponent
-  ]
+    DimensionsLossesComponent,
+  ],
 })
 export class DimensionsLossesModule {}

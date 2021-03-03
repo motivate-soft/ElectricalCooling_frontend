@@ -1,9 +1,9 @@
-import { Observable } from "rxjs";
-import { Cooling } from "../models/Cooling";
-import { Face } from "../models/Face";
-import { Fluid } from "../models/Fluid";
-import { Loss } from "../models/Loss";
-import { Passage } from "../models/Passage";
+import { Observable } from 'rxjs';
+import { Cooling } from '../models/Cooling';
+import { Face } from '../models/Face';
+import { Fluid } from '../models/Fluid';
+import { Loss } from '../models/Loss';
+import { Passage } from '../models/Passage';
 
 export abstract class CoolingModelData {
 

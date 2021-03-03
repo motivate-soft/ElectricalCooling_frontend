@@ -1,8 +1,8 @@
-import { Component } from "./Component";
-import { Face } from "./Face";
-import { Fluid } from "./Fluid";
+import { Component } from './Component';
+import { Face } from './Face';
+import { Fluid } from './Fluid';
 import { Loss } from './Loss';
-import { Passage } from "./Passage";
+import { Passage } from './Passage';
 
 export interface Cooling {
     id: any;

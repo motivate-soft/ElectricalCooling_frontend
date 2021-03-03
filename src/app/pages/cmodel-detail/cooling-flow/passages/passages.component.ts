@@ -40,7 +40,7 @@ const SETTINGS = {
     editButtonContent: '<i class="nb-edit"></i>',
     saveButtonContent: '<i class="nb-checkmark"></i>',
     cancelButtonContent: '<i class="nb-close"></i>',
-    confirmSave: true
+    confirmSave: true,
   },
   delete: {
     deleteButtonContent: '<i class="nb-trash"></i>',
@@ -64,7 +64,7 @@ export class PassagesComponent implements OnInit {
   ngOnInit(): void {
     this.cmodelService.currentCmodel$.subscribe(value => {
       this.source.load(value.passages);
-    })
+    });
   }
 
   onCreateConfirm(event): void {
@@ -77,10 +77,10 @@ export class PassagesComponent implements OnInit {
 
   onEditConfirm(event): void {
     if (window.confirm('Are you sure you want to edit?')) {
-      const cmodel = this.cmodelService.currentCmodel
-      const index = cmodel.passages.indexOf(event.data)
-      cmodel.passages[index] = event.newData
-      this.cmodelService.currentCmodel$.next(cmodel)
+      const cmodel = this.cmodelService.currentCmodel;
+      const index = cmodel.passages.indexOf(event.data);
+      cmodel.passages[index] = event.newData;
+      this.cmodelService.currentCmodel$.next(cmodel);
       // event.confirm.resolve();
     } else {
       event.confirm.reject();

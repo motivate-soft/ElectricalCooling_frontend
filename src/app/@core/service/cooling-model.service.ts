@@ -5,11 +5,9 @@ import { Observable, Subject } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import modelData from '../models/cooling_model.json';
+import windingTemperaturesData from '../models/winding_temperatures.json';
+import componentTemperaturesData from '../models/component_temperatures.json';
 
-import { Face } from '../models/Face';
-import { Loss } from '../models/Loss';
-import { Passage } from '../models/Passage';
-import { Fluid } from '../models/Fluid';
 import { CoolingModelData } from '../data/cooling-model';
 import { ConvertKeysToLowerCase } from './utils';
 import { map } from 'rxjs/operators';
@@ -20,6 +18,9 @@ export class CoolingModelService extends CoolingModelData {
   user: any;
   cmodels: Cooling[];
   currentCmodel: Cooling;
+  windingTemperaturesData = [];
+  rotorWindingData = [];
+  statorWindingData = [];
 
   cmodels$: Subject<Cooling[]> = new Subject<Cooling[]>();
   currentCmodel$: Subject<Cooling> = new Subject<Cooling>();
@@ -29,15 +30,15 @@ export class CoolingModelService extends CoolingModelData {
     private apiService: ApiService,
     private authService: NbAuthService,
   ) {
-    super()
+    super();
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
         if (token.isValid()) {
           this.user = token.getPayload();
         }
       });
-    this.cmodels$.subscribe(value => this.cmodels = value)
-    this.currentCmodel$.subscribe(value => { console.log('___this.currentCmodel$.subscribe___', value); this.currentCmodel = value })
+    this.cmodels$.subscribe(value => this.cmodels = value);
+    this.currentCmodel$.subscribe(value => { console.log('___this.currentCmodel$.subscribe___', value); this.currentCmodel = value; });
   }
 
   getList(params: any = {}): Observable<Cooling[]> {
@@ -45,13 +46,13 @@ export class CoolingModelService extends CoolingModelData {
       return this.apiService
         .get(
           '/cooling',
-          new HttpParams({ fromObject: params })
+          new HttpParams({ fromObject: params }),
         );
     }
     return this.apiService
       .get(
         '/cooling/me',
-        new HttpParams({ fromObject: params })
+        new HttpParams({ fromObject: params }),
       );
   }
 
@@ -59,7 +60,7 @@ export class CoolingModelService extends CoolingModelData {
     return this.apiService
       .get(
         '/cooling/me',
-        new HttpParams({ fromObject: params })
+        new HttpParams({ fromObject: params }),
       );
   }
 
@@ -72,29 +73,29 @@ export class CoolingModelService extends CoolingModelData {
     return this.apiService
       .post('/cooling/me', cmodel).pipe(map(
         data => {
-          console.log('create', data)
+          console.log('create', data);
           return data;
-        }
-      ))
+        },
+      ));
   }
 
   update(cmodel: any = this.currentCmodel): Observable<Cooling> {
-    const { owner } = cmodel
-    cmodel.owner = owner.id
+    const { owner } = cmodel;
+    cmodel.owner = owner.id;
     return this.apiService.put(`/cooling/me/${cmodel.id}`, cmodel).pipe(map(
       data => {
-        console.log('update', data)
+        console.log('update', data);
         return data;
-      }
+      },
     ));
   }
 
   delete(id: number): Observable<boolean> {
     return this.apiService.delete('/cooling/me/' + id).pipe(map(
       data => {
-        console.log('delete', data)
+        console.log('delete', data);
         return data;
-      }
+      },
     ));
   }
 
@@ -102,7 +103,24 @@ export class CoolingModelService extends CoolingModelData {
     // console.log('DEMO_MODEL', ConvertKeysToLowerCase(DEMO_MODEL))
     this.currentCmodel$.next({
       ...modelData,
-      id: ''
+      id: '',
     });
+  }
+
+  getWindingTemperatureData() {
+    this.windingTemperaturesData = windingTemperaturesData;
+    return this.windingTemperaturesData;
+  }
+
+  getRotorWindingData() {
+    return windingTemperaturesData[0];
+  }
+
+  getStatorWindingData() {
+    return windingTemperaturesData[1];
+  }
+
+  getComponentTemperaturesData() {
+    return componentTemperaturesData;
   }
 }

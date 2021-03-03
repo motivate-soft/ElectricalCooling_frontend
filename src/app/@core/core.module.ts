@@ -34,19 +34,19 @@ import { NgxAuthJWTInterceptor } from '../token.interceptor';
 
 const socialLinks = [
   {
-    url: "https://github.com/akveo/nebular",
-    target: "_blank",
-    icon: "github",
+    url: 'https://github.com/akveo/nebular',
+    target: '_blank',
+    icon: 'github',
   },
   {
-    url: "https://www.facebook.com/akveo/",
-    target: "_blank",
-    icon: "facebook",
+    url: 'https://www.facebook.com/akveo/',
+    target: '_blank',
+    icon: 'facebook',
   },
   {
-    url: "https://twitter.com/akveo_inc",
-    target: "_blank",
-    icon: "twitter",
+    url: 'https://twitter.com/akveo_inc',
+    target: '_blank',
+    icon: 'twitter',
   },
 ];
 
@@ -75,7 +75,7 @@ export const NB_CORE_PROVIDERS = [
         login: {
           endpoint: '/api/auth/jwt/create/',
           redirect: {
-            success: '/pages/cmodel',
+            success: '/cmodel',
             failure: null,
           },
         },
@@ -153,7 +153,7 @@ export const NB_CORE_PROVIDERS = [
       },
       register: {
         socialLinks: [],
-        terms: false
+        terms: false,
       },
     },
 

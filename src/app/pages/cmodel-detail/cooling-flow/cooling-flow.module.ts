@@ -19,7 +19,7 @@ import {CoolingFlowComponent} from './cooling-flow.component';
     Ng2SmartTableModule,
   ],
   declarations: [CoolingFlowComponent, FluidsComponent, PassagesComponent],
-  exports: [CoolingFlowComponent]
+  exports: [CoolingFlowComponent],
 })
 export class CoolingFlowModule {
 }

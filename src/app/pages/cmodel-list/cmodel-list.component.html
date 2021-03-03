@@ -25,12 +25,12 @@
           <tbody>
             <tr *ngFor="let cmodel of cmodels; let i = index">
               <th scope="row">
-                <a routerLink="/pages/cmodel/{{ cmodel.id }}">
+                <a routerLink="/cmodel/{{ cmodel.id }}">
                   <span class="badge">{{ i + 1 }}</span>
                 </a>
               </th>
               <td>
-                <a routerLink="/pages/cmodel/{{ cmodel.id }}">
+                <a routerLink="/cmodel/{{ cmodel.id }}">
                   <span class="badge">{{ cmodel.name }}</span>
                 </a>
               </td>

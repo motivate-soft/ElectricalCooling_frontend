@@ -46,7 +46,7 @@ export class FacesTableComponent implements OnInit {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
-      confirmSave: true
+      confirmSave: true,
     },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
@@ -67,7 +67,7 @@ export class FacesTableComponent implements OnInit {
     columns: {
       name: {
         title: 'Face',
-        type: 'string'
+        type: 'string',
       },
       passage: {
         title: 'Passage',
@@ -86,7 +86,7 @@ export class FacesTableComponent implements OnInit {
         renderComponent: ButtonViewComponent,
         onComponentInitFunction: (instance: any) => {
           instance.save.subscribe(row => {
-            this.openModal(row)
+            this.openModal(row);
           });
         },
       },
@@ -100,8 +100,8 @@ export class FacesTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.cmodelService.currentCmodel$.subscribe(value => {
-      this.source.load(value.faces)
-    })
+      this.source.load(value.faces);
+    });
   }
 
   openModal(rowData: any) {
@@ -114,12 +114,12 @@ export class FacesTableComponent implements OnInit {
       })
       .onClose.subscribe(setName => {
         if (!setName) return;
-        const selectedRowIndex = this.data.indexOf(rowData)
-        console.log(' selectedRowIndex, rowData, setName', selectedRowIndex, rowData, setName)
+        const selectedRowIndex = this.data.indexOf(rowData);
+        console.log(' selectedRowIndex, rowData, setName', selectedRowIndex, rowData, setName);
 
-        const calc = rowData.calculation.split(":")[0]
-        this.data[selectedRowIndex] = { ...rowData, calculation: `${calc}:${setName}` }
-        this.source.load(this.data)
+        const calc = rowData.calculation.split(':')[0];
+        this.data[selectedRowIndex] = { ...rowData, calculation: `${calc}:${setName}` };
+        this.source.load(this.data);
       });
   }
 
@@ -133,10 +133,10 @@ export class FacesTableComponent implements OnInit {
 
   onEditConfirm(event): void {
     if (window.confirm('Are you sure you want to edit?')) {
-      const cmodel = this.cmodelService.currentCmodel
-      const index = cmodel.faces.indexOf(event.data)
-      cmodel.faces[index] = event.newData
-      this.cmodelService.currentCmodel$.next(cmodel)
+      const cmodel = this.cmodelService.currentCmodel;
+      const index = cmodel.faces.indexOf(event.data);
+      cmodel.faces[index] = event.newData;
+      this.cmodelService.currentCmodel$.next(cmodel);
       // event.confirm.resolve();
     } else {
       event.confirm.reject();

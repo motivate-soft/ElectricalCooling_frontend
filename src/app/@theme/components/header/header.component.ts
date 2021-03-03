@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [{ title: 'Profile', link: '/pages/profile' }, { title: 'Log out', link: '/auth/logout' }];
+  userMenu = [{ title: 'Profile', link: '/profile' }, { title: 'Log out', link: '/auth/logout' }];
 
   constructor(
     private sidebarService: NbSidebarService,
@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
         if (token.isValid()) {
-          console.log('token.getPayload', token.getPayload())
+          console.log('token.getPayload', token.getPayload());
           this.user = token.getPayload(); // here we receive a payload from the token and assigns it to our `user` variable
         }
       });

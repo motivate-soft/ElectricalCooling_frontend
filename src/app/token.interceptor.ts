@@ -22,7 +22,7 @@ export class NgxAuthJWTInterceptor implements HttpInterceptor {
                         if (authenticated) {
                             return this.authService.getToken().pipe(
                                 switchMap((token: NbAuthToken) => {
-                                    //const JWT = `Bearer ${token.getValue()}`;  <--- replace this line with the next
+                                    // const JWT = `Bearer ${token.getValue()}`;  <--- replace this line with the next
                                     const JWT = `${token.getValue()}`;
                                     req = req.clone({
                                         setHeaders: {
@@ -31,14 +31,14 @@ export class NgxAuthJWTInterceptor implements HttpInterceptor {
                                     });
                                     return next.handle(req);
                                 }),
-                            )
+                            );
                         } else {
                             // Request is sent to server without authentication so that the client code
                             // receives the 401/403 error and can act as desired ('session expired', redirect to login, aso)
                             return next.handle(req);
                         }
                     }),
-                )
+                );
         } else {
             return next.handle(req);
         }

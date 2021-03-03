@@ -21,7 +21,7 @@ export class DetailComponent implements OnInit {
     faces: [],
     losses: [],
     passages: [],
-    fluids: []
+    fluids: [],
   };
   idParam: string;
 
@@ -42,20 +42,20 @@ export class DetailComponent implements OnInit {
       this.idParam = params[`id`];
 
       if (!!this.idParam) {
-        this.title = "Edit your model"
+        this.title = 'Edit your model';
         this.cmodelService.get(parseInt(this.idParam)).subscribe(
           data => {
             this.cmodelService.currentCmodel$.next(data);
-            this.cmodel = data
+            this.cmodel = data;
           },
           error => {
-            console.log('error', error)
-          }
-        )
+            console.log('error', error);
+          },
+        );
       } else {
-        this.title = "Create a new model"
-        this.cmodelService.loadInitialData()
-        this.cmodel = this.cmodelService.currentCmodel
+        this.title = 'Create a new model';
+        this.cmodelService.loadInitialData();
+        this.cmodel = this.cmodelService.currentCmodel;
       }
     });
   }
@@ -69,23 +69,23 @@ export class DetailComponent implements OnInit {
       this.cmodelService.update().subscribe(
         data => {
           this.cmodelService.currentCmodel$.next(this.cmodel);
-          this.toastrService.showToast("success", "Success", "successfully updated!")
-          this.router.navigate(['/pages/cmodel']);
+          this.toastrService.showToast('success', 'Success', 'successfully updated!');
+          this.router.navigate(['/cmodel']);
         },
         error => {
-          this.toastrService.showToast("warning", "Oops", "Server error!")
-        }
+          this.toastrService.showToast('warning', 'Oops', 'Server error!');
+        },
       );
     } else {
       this.cmodelService.create().subscribe(
         data => {
           this.cmodelService.currentCmodel$.next(this.cmodel);
-          this.toastrService.showToast("success", "Success", "successfully created!")
-          this.router.navigate(['/pages/cmodel']);
+          this.toastrService.showToast('success', 'Success', 'successfully created!');
+          this.router.navigate(['/cmodel']);
         },
         error => {
-          this.toastrService.showToast("warning", "Oops", "Server error!")
-        }
+          this.toastrService.showToast('warning', 'Oops', 'Server error!');
+        },
       );
     }
   }

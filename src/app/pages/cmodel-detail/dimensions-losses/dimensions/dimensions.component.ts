@@ -8,7 +8,7 @@ import { CoolingModelService } from '../../../../@core/service/cooling-model.ser
 })
 export class DimensionsComponent implements OnInit {
   data: any;
-  tabList: string[] = ["Stator", "Housing", "Rotor", "Winding", "Magnet", "Operation"];
+  tabList: string[] = ['Stator', 'Housing', 'Rotor', 'Winding', 'Magnet', 'Operation'];
 
   constructor(private cmodelService: CoolingModelService) { }
 

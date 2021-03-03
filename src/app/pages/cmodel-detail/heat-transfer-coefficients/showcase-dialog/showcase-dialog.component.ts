@@ -16,20 +16,20 @@ export class ShowcaseDialogComponent {
 
   // selectedIndexFormControl = new FormControl();
 
-  setOptions: any[] = ['AG', 'BG', 'BIP', 'TIP']
+  setOptions: any[] = ['AG', 'BG', 'BIP', 'TIP'];
 
   constructor(protected ref: NbDialogRef<ShowcaseDialogComponent>) { }
 
   save() {
-    console.log('selectedIndex', this.selectedIndex)
+    console.log('selectedIndex', this.selectedIndex);
     if (this.selectedIndex) {
       this.ref.close(this.setOptions[this.selectedIndex - 1]);
     } else {
-      this.ref.close()
+      this.ref.close();
     }
   }
 
   cancel() {
-    this.ref.close()
+    this.ref.close();
   }
 }

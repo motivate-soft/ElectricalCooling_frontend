@@ -7,7 +7,7 @@ import { User } from './../../@core/data/users';
 
 @Component({
     selector: 'app-profile',
-    templateUrl: './profile.component.html'
+    templateUrl: './profile.component.html',
 })
 
 export class ProfileComponent implements OnInit {
@@ -26,8 +26,8 @@ export class ProfileComponent implements OnInit {
     user = {
         firstName: '',
         lastName: '',
-        email: ''
-    }
+        email: '',
+    };
 
     constructor(
         private userService: UserService,
@@ -44,9 +44,9 @@ export class ProfileComponent implements OnInit {
                     this.user = {
                         firstName: user.first_name,
                         lastName: user.last_name,
-                        email: user.email
-                    }
-                    this.getProfile()
+                        email: user.email,
+                    };
+                    this.getProfile();
                 }
             });
 
@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
             firstName: ['', [Validators.required]],
             lastName: ['', [Validators.required]],
             email: ['', [Validators.required, Validators.email]],
-            phone: ['', [Validators.required]]
+            phone: ['', [Validators.required]],
         });
 
         /**
@@ -77,8 +77,8 @@ export class ProfileComponent implements OnInit {
         this.passwordForm.addControl('newPassword', new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]));
         this.passwordForm.addControl('repeatPassword', new FormControl(
             '', [Validators.compose(
-                [Validators.required, this.validatePasswordMatch.bind(this)]
-            )]
+                [Validators.required, this.validatePasswordMatch.bind(this)],
+            )],
         ));
     }
 
@@ -91,14 +91,14 @@ export class ProfileComponent implements OnInit {
     }
 
     checkPasswordMatch(frm: FormGroup) {
-        console.log('frm', frm)
+        console.log('frm', frm);
         return frm.get('newPassword').value === frm.get('repeatPassword').value
             ? null : { 'mismatch': true };
     }
 
     validatePasswordMatch(fieldControl: FormControl) {
-        return fieldControl.value === this.passwordForm.get("newPassword").value ? null : {
-            mismatch: true
+        return fieldControl.value === this.passwordForm.get('newPassword').value ? null : {
+            mismatch: true,
         };
     }
 
@@ -116,7 +116,7 @@ export class ProfileComponent implements OnInit {
     }
 
     getProfile() {
-        this.userService.getUser().subscribe(value => console.log('getProfile', value))
+        this.userService.getUser().subscribe(value => console.log('getProfile', value));
     }
 
     updateProfile() {
@@ -125,43 +125,43 @@ export class ProfileComponent implements OnInit {
             first_name: this.user.firstName,
             last_name: this.user.lastName,
             email: this.user.email,
-        }
+        };
         this.userService.updateUser(userObj).subscribe(
             data => {
-                this.toastrService.showToast("success", "Success", "Profile has been changed!")
+                this.toastrService.showToast('success', 'Success', 'Profile has been changed!');
             },
             error => {
                 if (error) {
-                    this.toastrService.showToast("warning", "Oops", "Invalid fields!")
+                    this.toastrService.showToast('warning', 'Oops', 'Invalid fields!');
                 }
-            }
-        )
+            },
+        );
     }
 
     setPassword() {
         const authObj = {
             current_password: this.currentPassword,
-            new_password: this.newPassword
-        }
+            new_password: this.newPassword,
+        };
 
         this.userService.setPassword(authObj).subscribe(
             data => {
-                this.toastrService.showToast("success", "Success", "Password has been changed!")
+                this.toastrService.showToast('success', 'Success', 'Password has been changed!');
             },
             error => {
                 if (error.current_password) {
-                    this.toastrService.showToast("warning", "Oops", "Your password is incorrect!")
+                    this.toastrService.showToast('warning', 'Oops', 'Your password is incorrect!');
                 }
                 if (error.new_password) {
-                    this.toastrService.showToast("warning", "Oops", error.new_password[0])
+                    this.toastrService.showToast('warning', 'Oops', error.new_password[0]);
                 }
-            }
-        )
+            },
+        );
     }
 
     cancelResetPassword() {
-        this.currentPassword = ''
-        this.newPassword = ''
-        this.repeatPassword = ''
+        this.currentPassword = '';
+        this.newPassword = '';
+        this.repeatPassword = '';
     }
 }

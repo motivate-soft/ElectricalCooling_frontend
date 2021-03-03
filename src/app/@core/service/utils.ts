@@ -1,17 +1,17 @@
-import { Cooling } from "../models/Cooling";
+import { Cooling } from '../models/Cooling';
 
-type AnyObject = { [key: string]: any }
+interface AnyObject { [key: string]: any; }
 
 export const lowercaseObjectKeys = (obj: AnyObject, deep = false) =>
     Object.keys(obj).reduce((acc, key) => {
         acc[key.toLocaleLowerCase()] =
-            deep && typeof obj[key] === "object" ? lowercaseObjectKeys(obj[key]) : obj[key];
+            deep && typeof obj[key] === 'object' ? lowercaseObjectKeys(obj[key]) : obj[key];
         return acc;
-    }, {} as AnyObject)
+    }, {} as AnyObject);
 
 export const ConvertKeysToLowerCase = (obj: AnyObject) => {
-    var output = {};
-    for (let i in obj) {
+    const output = {};
+    for (const i in obj) {
         if (Object.prototype.toString.apply(obj[i]) === '[object Object]') {
             output[i.toLowerCase()] = ConvertKeysToLowerCase(obj[i]);
         } else if (Object.prototype.toString.apply(obj[i]) === '[object Array]') {

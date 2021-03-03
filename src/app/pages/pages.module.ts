@@ -9,7 +9,7 @@ import {
   NbMenuModule,
   NbPopoverModule,
   NbSelectModule,
-  NbUserModule
+  NbUserModule,
 } from '@nebular/theme';
 import { FormsModule as ngFormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -18,6 +18,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { CmodelListComponent } from './cmodel-list/cmodel-list.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DetailModule } from './cmodel-detail/detail.module';
 
 @NgModule({
   imports: [
@@ -36,6 +37,8 @@ import { ProfileComponent } from './profile/profile.component';
     NbPopoverModule,
     ngFormsModule,
     ReactiveFormsModule,
+
+    DetailModule
   ],
   declarations: [PagesComponent, CmodelListComponent, ProfileComponent],
 })

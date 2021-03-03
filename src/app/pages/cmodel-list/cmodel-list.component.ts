@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NbComponentStatus, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
+import { NbComponentStatus, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { CoolingModelService } from '../../@core/service/cooling-model.service';
+import { NgxToastrService } from '../../@core/service/toast.service';
 import { Cooling } from './../../@core/models/Cooling';
 
 @Component({
@@ -13,22 +14,14 @@ import { Cooling } from './../../@core/models/Cooling';
 export class CmodelListComponent implements OnInit {
   cmodels: Cooling[];
 
-  types: NbComponentStatus[] = [
-    'primary',
-    'success',
-    'info',
-    'warning',
-    'danger',
-  ];
-
   constructor(
     private cmodelService: CoolingModelService,
-    private toastrService: NbToastrService,
-    private router: Router
+    private toastrService: NgxToastrService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.getCoolingList()
+    this.getCoolingList();
   }
 
   getCoolingList(): void {
@@ -38,47 +31,31 @@ export class CmodelListComponent implements OnInit {
         this.cmodels = this.cmodelService.cmodels;
       },
       error => {
-        console.log('error', error)
-      }
+        console.log('error', error);
+      },
     );
   }
 
   onAddClick($event) {
-    console.log('$event', $event)
-    this.router.navigate(['/pages/cmodel/new']);
+    console.log('$event', $event);
+    this.router.navigate(['/cmodel/new']);
   }
 
   onDeleteClick(id: number) {
     if (window.confirm('Are you sure you want to delete?')) {
       this.cmodelService.delete(id).subscribe(
         data => {
-          const array = this.cmodelService.cmodels.filter(obj => obj.id !== id)
+          const array = this.cmodelService.cmodels.filter(obj => obj.id !== id);
           this.cmodelService.cmodels$.next(array);
           this.cmodels = array;
-          this.showToast("success", "Success", "successfully deleted!")
+          this.toastrService.showToast('success', 'Success', 'successfully deleted!');
         },
         error => {
-          this.showToast("warning", "Oops", "Server error!")
-        }
-      )
+          this.toastrService.showToast('warning', 'Oops', 'Server error!');
+        },
+      );
     } else {
       return;
     }
-  }
-
-  private showToast(type: NbComponentStatus, title: string = '', body: string = '') {
-    const config = {
-      status: type,
-      destroyByClick: true,
-      duration: 5000,
-      hasIcon: true,
-      position: NbGlobalPhysicalPosition.TOP_RIGHT,
-      preventDuplicates: false,
-    };
-
-    this.toastrService.show(
-      body,
-      title,
-      config);
   }
 }

@@ -10,6 +10,7 @@ import { ResultComponent } from './result/result.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { FormsModule as ngFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { ResultModule } from './result/result.module';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     DimensionsLossesModule,
     CoolingFlowModule,
     HeatTransferCoefficientsModule,
+    ResultModule,
   ],
-  declarations: [DetailComponent, ResultComponent],
+  declarations: [DetailComponent],
 })
 export class DetailModule { }

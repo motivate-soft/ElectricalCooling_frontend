@@ -58,18 +58,18 @@ import { AuthGuard } from './@core/auth-guard.service';
     /**
      * Approach 2
      */
-    { provide: APP_BASE_HREF, useValue: "/" },
+    { provide: APP_BASE_HREF, useValue: '/' },
     { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
     {
       provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
       useValue: req => {
         return false;
-      }
+      },
     },
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }, // header config interceptor
 
     // { provide: HTTP_INTERCEPTORS, useClass: NgxAuthJWTInterceptor, multi: true },  // custom token name -> "JWT" interceptor
-  ]
+  ],
 })
 export class AppModule {
 }

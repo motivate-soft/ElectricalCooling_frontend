@@ -23,18 +23,18 @@ import {FormsModule} from '@angular/forms';
     NgxChartsModule,
     ChartModule,
     NbSelectModule,
-    NbDialogModule.forChild()
+    NbDialogModule.forChild(),
   ],
   declarations: [
     HeatTransferCoefficientsComponent,
     HtcChartComponent,
     HtcsTableComponent,
     FacesTableComponent,
-    ShowcaseDialogComponent
+    ShowcaseDialogComponent,
   ],
   exports: [
-    HeatTransferCoefficientsComponent
-  ]
+    HeatTransferCoefficientsComponent,
+  ],
 })
 export class HeatTransferCoefficientsModule {
 }

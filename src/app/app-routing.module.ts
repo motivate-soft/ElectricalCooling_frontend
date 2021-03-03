@@ -5,22 +5,10 @@ import { AuthGuard } from './@core/auth-guard.service';
 
 export const routes: Routes = [
   {
-    path: 'pages',
+    path: '',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
-  },
-  {
-    path: 'pages/cmodel/new',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/cmodel-detail/detail.module')
-      .then(m => m.DetailModule),
-  },
-  {
-    path: 'pages/cmodel/:id',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/cmodel-detail/detail.module')
-      .then(m => m.DetailModule),
   },
   {
     path: 'auth',
@@ -28,8 +16,8 @@ export const routes: Routes = [
       .then(m => m.NgxAuthModule),
     // loadChildren: './auth/auth.module#NgxAuthModule',
   },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+  { path: '', redirectTo: '/cmodel', pathMatch: 'full' },
+  { path: '**', redirectTo: '/cmodle' },
 ];
 
 const config: ExtraOptions = {

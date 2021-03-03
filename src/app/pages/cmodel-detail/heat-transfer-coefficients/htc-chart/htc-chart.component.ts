@@ -24,6 +24,7 @@ export class HtcChartComponent implements OnInit, OnDestroy {
       const colors: any = config.variables;
       const chartjs: any = config.variables.chartjs;
 
+      console.log('colors', colors);
       this.data = {
         labels: this.htcsService.getXRange(),
         datasets: [

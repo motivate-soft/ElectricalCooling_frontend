@@ -54,8 +54,8 @@ export class HtcsTableComponent implements OnInit {
   }
 
   onFileChange($event): void {
-    const file = $event.target.files[0]
-    this.readFile(file)
+    const file = $event.target.files[0];
+    this.readFile(file);
   }
 
   async readFile(file) {
@@ -71,7 +71,7 @@ export class HtcsTableComponent implements OnInit {
       bg: item[2],
       tip: item[3],
       bip: item[4],
-    }))
+    }));
     this.source.load(this.htcsService.getCoords());
   }
 
@@ -84,7 +84,7 @@ export class HtcsTableComponent implements OnInit {
       reader.onerror = function () {
         reject(reader.error);
       };
-      console.log('__reader', reader)
+      console.log('__reader', reader);
       reader.readAsText(file);
     });
   }

@@ -8,8 +8,8 @@ import { ApiData } from '../data/api';
 
 @Injectable()
 export class ApiService extends ApiData {
-    constructor(private http: HttpClient,) {
-        super()
+    constructor(private http: HttpClient) {
+        super();
     }
 
     private formatErrors(error: any) {
@@ -24,20 +24,20 @@ export class ApiService extends ApiData {
     put(path: string, body: Object = {}): Observable<any> {
         return this.http.put(
             `${environment.api_url}${path}`,
-            JSON.stringify(body)
+            JSON.stringify(body),
         ).pipe(catchError(this.formatErrors));
     }
 
     post(path: string, body: Object = {}): Observable<any> {
         return this.http.post(
             `${environment.api_url}${path}`,
-            JSON.stringify(body)
+            JSON.stringify(body),
         ).pipe(catchError(this.formatErrors));
     }
 
     delete(path): Observable<any> {
         return this.http.delete(
-            `${environment.api_url}${path}`
+            `${environment.api_url}${path}`,
         ).pipe(catchError(this.formatErrors));
     }
 }

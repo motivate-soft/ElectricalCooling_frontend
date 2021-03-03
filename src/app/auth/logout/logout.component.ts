@@ -4,7 +4,7 @@ import { NbAuthService, NbLogoutComponent, NbTokenService, NB_AUTH_OPTIONS } fro
 
 @Component({
     selector: 'ngx-logout',
-    templateUrl: 'logout.component.html'
+    templateUrl: 'logout.component.html',
 })
 
 export class NgxLogoutComponent extends NbLogoutComponent implements OnInit {
@@ -12,7 +12,7 @@ export class NgxLogoutComponent extends NbLogoutComponent implements OnInit {
         protected service: NbAuthService,
         @Inject(NB_AUTH_OPTIONS) protected options = {},
         protected router: Router,
-        protected tokenService: NbTokenService
+        protected tokenService: NbTokenService,
     ) {
         super(service, options, router);
     }
