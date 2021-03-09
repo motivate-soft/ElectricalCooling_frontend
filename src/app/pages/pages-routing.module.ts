@@ -12,10 +12,6 @@ const routes: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'cmodel',
-                component: CmodelListComponent,
-            },
-            {
                 path: 'cmodel/new',
                 canActivate: [AuthGuard],
                 component: DetailComponent,
@@ -25,12 +21,16 @@ const routes: Routes = [
                 path: 'cmodel/:id',
                 canActivate: [AuthGuard],
                 component: DetailComponent,
-
             },
             {
                 path: 'profile',
                 component: ProfileComponent,
             },
+            {
+                path: 'cmodel',
+                component: CmodelListComponent,
+            },
+            { path: '', redirectTo: '/cmodel', pathMatch: 'full' },
         ],
     },
 ];

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbThemeService, NbColorHelper } from '@nebular/theme';
+import { combineLatest } from 'rxjs';
 import { CoolingModelService } from '../../../../@core/service/cooling-model.service';
 import { HtcsService } from '../../../../@core/service/htcs.service';
 
@@ -22,45 +23,50 @@ export class WindingChartComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.themeSubscription = this.theme.getJsTheme().subscribe((config) => {
-      const colors: any = config.variables;
-      const chartjs: any = config.variables.chartjs;
-      this.rotorChartData = this.generateDatasets(this.cmodelService.getRotorWindingData(), colors);
-      this.statorChartData = this.generateDatasets(this.cmodelService.getStatorWindingData(), colors);
-      this.options = {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          xAxes: [
-            {
-              gridLines: {
-                display: true,
-                color: chartjs.axisLineColor,
+    combineLatest([
+      this.cmodelService.windingTemperaturesData$,
+      this.theme.getJsTheme(),
+    ])
+      // .pipe(takeWhile(() => this.alive))
+      .subscribe(([windingTemperaturesData, config]: [any, any]) => {
+        const colors: any = config.variables;
+        const chartjs: any = config.variables.chartjs;
+        this.rotorChartData = this.generateDatasets(windingTemperaturesData[0], colors);
+        this.statorChartData = this.generateDatasets(windingTemperaturesData[1], colors);
+        this.options = {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            xAxes: [
+              {
+                gridLines: {
+                  display: true,
+                  color: chartjs.axisLineColor,
+                },
+                ticks: {
+                  fontColor: chartjs.textColor,
+                },
               },
-              ticks: {
-                fontColor: chartjs.textColor,
+            ],
+            yAxes: [
+              {
+                gridLines: {
+                  display: true,
+                  color: chartjs.axisLineColor,
+                },
+                ticks: {
+                  fontColor: chartjs.textColor,
+                },
               },
-            },
-          ],
-          yAxes: [
-            {
-              gridLines: {
-                display: true,
-                color: chartjs.axisLineColor,
-              },
-              ticks: {
-                fontColor: chartjs.textColor,
-              },
-            },
-          ],
-        },
-        legend: {
-          labels: {
-            fontColor: chartjs.textColor,
+            ],
           },
-        },
-      };
-    });
+          legend: {
+            labels: {
+              fontColor: chartjs.textColor,
+            },
+          },
+        };
+      });
   }
 
   generateDatasets(data, colors) {
@@ -80,7 +86,7 @@ export class WindingChartComponent implements OnInit, OnDestroy {
         dataArray.push([data[i]]);
       }
     }
-    console.log('dataArray', data, keyArrays, dataArray);
+    console.log('chart datasets', data, keyArrays, dataArray);
     const colorKeys = ['primary', 'success', 'warning', 'danger'];
 
     return {

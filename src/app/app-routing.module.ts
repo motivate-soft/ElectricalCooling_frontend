@@ -17,7 +17,7 @@ export const routes: Routes = [
     // loadChildren: './auth/auth.module#NgxAuthModule',
   },
   { path: '', redirectTo: '/cmodel', pathMatch: 'full' },
-  { path: '**', redirectTo: '/cmodle' },
+  { path: '**', redirectTo: '/cmodel' },
 ];
 
 const config: ExtraOptions = {

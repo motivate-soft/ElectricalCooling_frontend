@@ -5,7 +5,7 @@ import {
   SkipSelf,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbAuthJWTToken, NbAuthModule, NbDummyAuthStrategy, NbPasswordAuthStrategy } from '@nebular/auth';
+import { NbAuthJWTToken, NbAuthOAuth2Token, NbAuthModule, NbDummyAuthStrategy, NbPasswordAuthStrategy } from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { of as observableOf } from 'rxjs';
 
@@ -31,6 +31,7 @@ import { ApiData } from './data/api';
 import { ApiService } from './service/api.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxAuthJWTInterceptor } from '../token.interceptor';
+import { NgxPasswordAuthStrategy } from './password-strategy';
 
 const socialLinks = [
   {
@@ -112,8 +113,10 @@ export const NB_CORE_PROVIDERS = [
           },
         },
         token: {
+          // class: NbAuthOAuth2Token,
+          // key: 'token',
           class: NbAuthJWTToken,
-          key: 'access',
+          key: 'token.access_token',
         },
         refreshToken: {
           endpoint: '/api/auth/jwt/refresh/',

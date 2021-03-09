@@ -3,6 +3,7 @@
   <nb-card-body>
     <chart
       type="line"
+      *ngIf="rotorChartData?.datasets"
       [data]="rotorChartData"
       [options]="options"
       style="min-height: 1000px"
@@ -14,6 +15,7 @@
   <nb-card-body>
     <chart
       type="line"
+      *ngIf="statorChartData?.datasets"
       [data]="statorChartData"
       [options]="options"
       style="min-height: 1000px"

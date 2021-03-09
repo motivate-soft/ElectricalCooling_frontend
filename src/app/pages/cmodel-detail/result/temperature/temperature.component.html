@@ -2,7 +2,9 @@
   <nb-card-header>Results</nb-card-header>
   <nb-card-body>
     <div class="buttons-row">
-      <button nbButton status="info" class="mb-4">Solve</button>
+      <button nbButton status="info" class="mb-4" (click)="onClick()">
+        Solve
+      </button>
       <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -11,13 +13,8 @@
             <th scope="col">AvgTemperature</th>
           </tr>
         </thead>
-        <tbody>
-          <tr
-            *ngFor="
-              let row of this.cmodelService.getComponentTemperaturesData();
-              let i = index
-            "
-          >
+        <tbody *ngIf="componentTemperaturesData?.length > 0">
+          <tr *ngFor="let row of componentTemperaturesData; let i = index">
             <td>
               {{ row.Name }}
             </td>
@@ -30,6 +27,12 @@
           </tr>
         </tbody>
       </table>
+      <h5
+        *ngIf="componentTemperaturesData?.length === 0"
+        class="d-flex justify-content-center"
+      >
+        No results to display
+      </h5>
     </div>
   </nb-card-body>
 </nb-card>

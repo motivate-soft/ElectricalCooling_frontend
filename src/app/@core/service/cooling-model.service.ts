@@ -5,11 +5,10 @@ import { Observable, Subject } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import modelData from '../models/cooling_model.json';
-import windingTemperaturesData from '../models/winding_temperatures.json';
-import componentTemperaturesData from '../models/component_temperatures.json';
+
 
 import { CoolingModelData } from '../data/cooling-model';
-import { ConvertKeysToLowerCase } from './utils';
+import { ConvertKeysToLowerCase, ConvertKeysToUpperCase } from './utils';
 import { map } from 'rxjs/operators';
 
 
@@ -19,11 +18,14 @@ export class CoolingModelService extends CoolingModelData {
   cmodels: Cooling[];
   currentCmodel: Cooling;
   windingTemperaturesData = [];
-  rotorWindingData = [];
-  statorWindingData = [];
+  componentTemperaturesData = []
+  // rotorWindingData = [];
+  // statorWindingData = [];
 
   cmodels$: Subject<Cooling[]> = new Subject<Cooling[]>();
   currentCmodel$: Subject<Cooling> = new Subject<Cooling>();
+  windingTemperaturesData$: Subject<any> = new Subject<any>();
+  componentTemperaturesData$: Subject<any> = new Subject<any>();
 
 
   constructor(
@@ -76,6 +78,7 @@ export class CoolingModelService extends CoolingModelData {
           console.log('create', data);
           return data;
         },
+        err => console.log('err', err)
       ));
   }
 
@@ -87,6 +90,7 @@ export class CoolingModelService extends CoolingModelData {
         console.log('update', data);
         return data;
       },
+      err => console.log('err', err)
     ));
   }
 
@@ -96,6 +100,22 @@ export class CoolingModelService extends CoolingModelData {
         console.log('delete', data);
         return data;
       },
+      err => console.log('err', err)
+    ));
+  }
+
+  solve(inputParams: any = this.currentCmodel): Observable<any> {
+    console.log('request_solve', inputParams)
+    // console.log('request_solve', ConvertKeysToUpperCase(inputParams.passages))
+
+    return this.apiService.post('/cooling/solve', inputParams).pipe(map(
+      data => {
+        this.windingTemperaturesData$.next(data.winding_temperatures)
+        this.componentTemperaturesData$.next(data.component_temperatures)
+        console.log('response', data);
+        return data;
+      },
+      err => console.log('err', err)
     ));
   }
 
@@ -105,22 +125,5 @@ export class CoolingModelService extends CoolingModelData {
       ...modelData,
       id: '',
     });
-  }
-
-  getWindingTemperatureData() {
-    this.windingTemperaturesData = windingTemperaturesData;
-    return this.windingTemperaturesData;
-  }
-
-  getRotorWindingData() {
-    return windingTemperaturesData[0];
-  }
-
-  getStatorWindingData() {
-    return windingTemperaturesData[1];
-  }
-
-  getComponentTemperaturesData() {
-    return componentTemperaturesData;
   }
 }

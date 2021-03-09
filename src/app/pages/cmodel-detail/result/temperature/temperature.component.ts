@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CoolingModelService } from '../../../../@core/service/cooling-model.service';
 
 @Component({
@@ -6,11 +6,20 @@ import { CoolingModelService } from '../../../../@core/service/cooling-model.ser
     templateUrl: 'temperature.component.html',
 })
 
-export class ResultTemperatureComponent implements OnInit {
+export class ResultTemperatureComponent {
+    @Output() save: EventEmitter<any> = new EventEmitter();
+
+    componentTemperaturesData = []
+
     constructor(
         public cmodelService: CoolingModelService,
-    ) { }
+    ) {
+        this.cmodelService.componentTemperaturesData$.subscribe(
+            data => this.componentTemperaturesData = data
+        )
+    }
 
-    ngOnInit() {
+    onClick() {
+        this.save.emit()
     }
 }

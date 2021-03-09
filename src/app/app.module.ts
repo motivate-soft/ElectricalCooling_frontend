@@ -47,25 +47,26 @@ import { AuthGuard } from './@core/auth-guard.service';
     /**
      * Approach 1
      */
-    // {
-    //   provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
-    //   useValue: function (req: HttpRequest<any>) {
-    //     return req.url === '/api/auth/jwt/refresh/';
-    //   },
-    // },
-    // { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
+    {
+      provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
+      useValue: function (req: HttpRequest<any>) {
+        return req.url === '/api/auth/jwt/refresh/';
+      },
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
 
     /**
      * Approach 2
      */
-    { provide: APP_BASE_HREF, useValue: '/' },
-    { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
-    {
-      provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
-      useValue: req => {
-        return false;
-      },
-    },
+    // { provide: APP_BASE_HREF, useValue: '/' },
+    // { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
+    // {
+    //   provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
+    //   useValue: req => {
+    //     return false;
+    //   },
+    // },
+
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }, // header config interceptor
 
     // { provide: HTTP_INTERCEPTORS, useClass: NgxAuthJWTInterceptor, multi: true },  // custom token name -> "JWT" interceptor
