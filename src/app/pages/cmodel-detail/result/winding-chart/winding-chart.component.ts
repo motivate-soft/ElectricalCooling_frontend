@@ -111,6 +111,9 @@ export class WindingChartComponent implements AfterViewInit, OnDestroy {
             },
           },
           axisLabel: {
+            formatter: function (value) {
+              return Math.round(value * 100000) / 100000;
+            },
             textStyle: {
               color: echarts.textColor,
             },
