@@ -1,24 +1,27 @@
 <nb-card>
   <nb-card-header>RotorWinding-Leading</nb-card-header>
   <nb-card-body>
-    <chart
+    <!-- <chart
       type="line"
       *ngIf="rotorChartData?.datasets"
       [data]="rotorChartData"
       [options]="options"
       style="min-height: 1000px"
-    ></chart>
+    ></chart> -->
+
+    <div echarts [options]="rotorChartOptions" class="echart"></div>
   </nb-card-body>
 </nb-card>
 <nb-card>
   <nb-card-header>StatorWinding-Leading</nb-card-header>
   <nb-card-body>
-    <chart
+    <!-- <chart
       type="line"
       *ngIf="statorChartData?.datasets"
       [data]="statorChartData"
       [options]="options"
       style="min-height: 1000px"
-    ></chart>
+    ></chart> -->
+    <div echarts [options]="statorChartOptions" class="echart"></div>
   </nb-card-body>
 </nb-card>

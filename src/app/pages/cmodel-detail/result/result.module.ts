@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ThemeModule } from '../../../@theme/theme.module';
-import { NbButtonModule, NbCardModule, NbTabsetModule } from '@nebular/theme';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { NbButtonModule, NbCardModule } from '@nebular/theme';
 import { ResultComponent } from './result.component';
 import { WindingChartComponent } from './winding-chart/winding-chart.component';
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -19,7 +18,6 @@ import { ResultTemperatureComponent } from './temperature/temperature.component'
         NbCardModule,
         NbButtonModule,
         NbButtonModule,
-        Ng2SmartTableModule,
         NgxEchartsModule,
         NgxChartsModule,
         ChartModule,
