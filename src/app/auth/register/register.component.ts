@@ -12,8 +12,8 @@ export class NgxRegisterComponent extends NbRegisterComponent {
     const userObj = this.user;
     this.user.first_name = userObj.firstName;
     this.user.last_name = userObj.lastName;
-    delete this.user.firstName;
-    delete this.user.lastName;
+    // delete this.user.firstName;
+    // delete this.user.lastName;
     super.register();
   }
 }

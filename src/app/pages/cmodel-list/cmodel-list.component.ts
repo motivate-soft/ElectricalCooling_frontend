@@ -38,7 +38,7 @@ export class CmodelListComponent implements OnInit {
 
   onAddClick($event) {
     console.log('$event', $event);
-    this.router.navigate(['/cmodel/new']);
+    this.router.navigateByUrl('/cmodel/new');
   }
 
   onDeleteClick(id: number) {

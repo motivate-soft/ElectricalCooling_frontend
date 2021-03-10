@@ -20,7 +20,6 @@ export class WindingChartComponent implements AfterViewInit, OnDestroy {
 
   rotorChartOptions: any;
   statorChartOptions: any;
-  themeSubscription: any;
 
   constructor(
     private theme: NbThemeService,
@@ -158,6 +157,5 @@ export class WindingChartComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
   }
 }
