@@ -58,7 +58,6 @@ export class ProfileComponent implements OnInit {
             firstName: ['', [Validators.required]],
             lastName: ['', [Validators.required]],
             email: ['', [Validators.required, Validators.email]],
-            phone: ['', [Validators.required]],
         });
 
         /**
@@ -104,6 +103,7 @@ export class ProfileComponent implements OnInit {
     }
 
     saveProfile() {
+        console.log('this.profileForm', this.profileForm)
         this.updateProfile();
         // if (!this.loading) {
         //     this.profileFormSubmitted = true;
@@ -129,7 +129,7 @@ export class ProfileComponent implements OnInit {
         };
         this.userService.updateUser(userObj).subscribe(
             data => {
-                this.toastrService.showToast('success', 'Success', 'Profile has been changed!');
+                this.toastrService.showToast('success', 'Success', 'Profile has been updated!');
             },
             error => {
                 if (error) {

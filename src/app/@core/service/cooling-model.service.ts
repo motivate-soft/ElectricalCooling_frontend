@@ -71,6 +71,11 @@ export class CoolingModelService extends CoolingModelData {
       .get(`/cooling/me/${id}`);
   }
 
+  getDefaultModel(): Observable<Cooling> {
+    return this.apiService
+      .get(`/cooling/demo_model`);
+  }
+
   create(cmodel: any = this.currentCmodel): Observable<Cooling> {
     return this.apiService
       .post('/cooling/me', cmodel).pipe(map(
@@ -117,13 +122,5 @@ export class CoolingModelService extends CoolingModelData {
       },
       err => console.log('err', err)
     ));
-  }
-
-  loadInitialData(): void {
-    // console.log('DEMO_MODEL', ConvertKeysToLowerCase(DEMO_MODEL))
-    this.currentCmodel$.next({
-      ...modelData,
-      id: '',
-    });
   }
 }

@@ -4,6 +4,7 @@ import { CoolingModelService } from '../../@core/service/cooling-model.service';
 import { Cooling } from './../../@core/models/Cooling';
 import { Location } from '@angular/common';
 import { NgxToastrService } from './../../@core/service/toast.service';
+import modelJson from '../../@core/models/cooling_model.json'
 
 
 @Component({
@@ -33,6 +34,7 @@ export class DetailComponent implements OnInit {
     private toastrService: NgxToastrService,
   ) { }
 
+
   ngOnInit(): void {
     this.getCmodel();
   }
@@ -50,18 +52,24 @@ export class DetailComponent implements OnInit {
           },
           error => {
             console.log('error', error);
+            this.toastrService.showToast('warning', 'Oops', 'Server error!');
           },
         );
       } else {
         this.title = 'Create a new model';
-        this.cmodelService.loadInitialData();
-        this.cmodel = this.cmodelService.currentCmodel;
+        this.cmodelService.getDefaultModel().subscribe(
+          data => {
+            console.log('getDefaultModel', data)
+            this.cmodelService.currentCmodel$.next(data);
+            this.cmodel = data;
+          },
+          error => {
+            console.log('error', error)
+            this.toastrService.showToast('warning', 'Oops', 'Server error!');
+          }
+        );
       }
     });
-  }
-
-  onChangeModelName($event): void {
-
   }
 
   onClickSave(): void {
