@@ -9,17 +9,17 @@ import { CoolingModelService } from '../../../../@core/service/cooling-model.ser
 export class ResultTemperatureComponent {
     @Output() save: EventEmitter<any> = new EventEmitter();
 
-    componentTemperaturesData = []
+    componentTemperaturesData = [];
 
     constructor(
         public cmodelService: CoolingModelService,
     ) {
         this.cmodelService.componentTemperaturesData$.subscribe(
-            data => this.componentTemperaturesData = data
-        )
+            data => this.componentTemperaturesData = data,
+        );
     }
 
     onClick() {
-        this.save.emit()
+        this.save.emit();
     }
 }

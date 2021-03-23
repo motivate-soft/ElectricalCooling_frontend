@@ -7,6 +7,6 @@ import { NbLoginComponent } from '@nebular/auth';
 })
 export class NgxLoginComponent extends NbLoginComponent implements OnInit {
     ngOnInit() {
-        localStorage.removeItem("auth_app_token")
+        localStorage.removeItem('auth_app_token');
     }
 }

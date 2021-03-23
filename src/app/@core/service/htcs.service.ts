@@ -1,93 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Htcs } from '../data/htcs';
 import { HTC } from '../models/HTC';
 import { HTCcoord } from '../models/HTCcoord';
 
 
-const HTCs: HTC[] = [
-  {
-    x: 0,
-    ag: 47,
-    bg: 23,
-    tip: 82,
-    bip: 25,
-  },
-  {
-    x: 0.1,
-    ag: 87,
-    bg: 100,
-    tip: 43,
-    bip: 79,
-  },
-  {
-    x: 0.2,
-    ag: 96,
-    bg: 94,
-    tip: 39,
-    bip: 53,
-  },
-  {
-    x: 0.3,
-    ag: 96,
-    bg: 58,
-    tip: 45,
-    bip: 72,
-  },
-  {
-    x: 0.4,
-    ag: 53,
-    bg: 14,
-    tip: 11,
-    bip: 39,
-  },
-  {
-    x: 0.5,
-    ag: 33,
-    bg: 65,
-    tip: 78,
-    bip: 21,
-  },
-  {
-    x: 0.6,
-    ag: 25,
-    bg: 38,
-    tip: 48,
-    bip: 55,
-  },
-  {
-    x: 0.7,
-    ag: 72,
-    bg: 79,
-    tip: 72,
-    bip: 99,
-  },
-  {
-    x: 0.8,
-    ag: 80,
-    bg: 23,
-    tip: 42,
-    bip: 35,
-  },
-  {
-    x: 0.9,
-    ag: 78,
-    bg: 24,
-    tip: 22,
-    bip: 27,
-  },
-  {
-    x: 1,
-    ag: 51,
-    bg: 81,
-    tip: 23,
-    bip: 69,
-  },
-];
 
 @Injectable()
 export class HtcsService extends Htcs {
-  htcs: HTC[] = HTCs;
-  coords: HTCcoord[];
+  htcs: HTC[] = [];
+  htcs$: Subject<HTC[]> = new Subject<HTC[]>();
+
+  constructor() {
+    super();
+    this.htcs$.subscribe(value => this.htcs = value);
+  }
 
   getData() {
     return this.htcs;
@@ -136,9 +63,5 @@ export class HtcsService extends Htcs {
     }));
 
     return [...AGsCoords, ...BGsCoords, ...BIPsCoords, ...TIPsCoords];
-  }
-
-  getHTCs() {
-    return this.htcs;
   }
 }

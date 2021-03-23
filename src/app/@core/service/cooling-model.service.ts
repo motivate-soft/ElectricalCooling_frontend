@@ -18,7 +18,7 @@ export class CoolingModelService extends CoolingModelData {
   cmodels: Cooling[];
   currentCmodel: Cooling;
   windingTemperaturesData = [];
-  componentTemperaturesData = []
+  componentTemperaturesData = [];
   // rotorWindingData = [];
   // statorWindingData = [];
 
@@ -83,7 +83,7 @@ export class CoolingModelService extends CoolingModelData {
           console.log('create', data);
           return data;
         },
-        err => console.log('err', err)
+        err => console.log('err', err),
       ));
   }
 
@@ -95,7 +95,7 @@ export class CoolingModelService extends CoolingModelData {
         console.log('update', data);
         return data;
       },
-      err => console.log('err', err)
+      err => console.log('err', err),
     ));
   }
 
@@ -105,22 +105,22 @@ export class CoolingModelService extends CoolingModelData {
         console.log('delete', data);
         return data;
       },
-      err => console.log('err', err)
+      err => console.log('err', err),
     ));
   }
 
   solve(inputParams: any = this.currentCmodel): Observable<any> {
-    console.log('request_solve', inputParams)
+    console.log('request_solve', inputParams);
     // console.log('request_solve', ConvertKeysToUpperCase(inputParams.passages))
 
     return this.apiService.post('/cooling/solve', inputParams).pipe(map(
       data => {
-        this.windingTemperaturesData$.next(data.winding_temperatures)
-        this.componentTemperaturesData$.next(data.component_temperatures)
+        this.windingTemperaturesData$.next(data.winding_temperatures);
+        this.componentTemperaturesData$.next(data.component_temperatures);
         console.log('response', data);
         return data;
       },
-      err => console.log('err', err)
+      err => console.log('err', err),
     ));
   }
 }

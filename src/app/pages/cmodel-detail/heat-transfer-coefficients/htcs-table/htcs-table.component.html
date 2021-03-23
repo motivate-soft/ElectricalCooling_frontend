@@ -4,7 +4,7 @@
   </nb-card-header>
   <div class="p-5">
     <div class="row">
-      <div class="col-md-6 offset-md-3 col-sm-12">
+      <div class="col-md-8 offset-md-2 col-sm-12">
         <input
           #dataFileInput
           hidden
@@ -12,18 +12,29 @@
           accept=".csv"
           (change)="onFileChange($event)"
         />
-        <button
-          nbButton
-          status="info"
-          class="mb-4"
-          (click)="dataFileInput.click()"
-        >
-          Load Data File
-        </button>
+        <div class="d-flex justify-content-between">
+          <button
+            nbButton
+            status="info"
+            class="mb-4"
+            (click)="dataFileInput.click()"
+          >
+            Load Data File
+          </button>
+          <button
+            nbButton
+            status="warning"
+            class="mb-4"
+            (click)="onBulkDelete($event)"
+          >
+            Delete
+          </button>
+        </div>
         <ng2-smart-table
           [settings]="settings"
           [source]="source"
           (deleteConfirm)="onDeleteConfirm($event)"
+          (userRowSelect)="onUserRowSelect($event)"
         >
         </ng2-smart-table>
       </div>

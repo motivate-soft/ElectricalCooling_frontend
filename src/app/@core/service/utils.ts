@@ -13,7 +13,7 @@ export const camelize = (str: string) => {
     return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, function (match, chr) {
         return chr.toUpperCase();
     });
-}
+};
 
 export const ConvertKeysToLowerCase = (obj: AnyObject) => {
     const output = {};

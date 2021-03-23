@@ -13,15 +13,11 @@ export class ShowcaseDialogComponent {
   @Input() rowData: any;
 
   selectedIndex: number = 1;
-
-  // selectedIndexFormControl = new FormControl();
-
   setOptions: any[] = ['AG', 'BG', 'BIP', 'TIP'];
 
   constructor(protected ref: NbDialogRef<ShowcaseDialogComponent>) { }
 
   save() {
-    console.log('selectedIndex', this.selectedIndex);
     if (this.selectedIndex) {
       this.ref.close(this.setOptions[this.selectedIndex - 1]);
     } else {

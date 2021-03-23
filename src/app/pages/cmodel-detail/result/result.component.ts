@@ -26,7 +26,7 @@ export class ResultComponent implements OnInit {
             },
             error => {
                 this.toastrService.showToast('warning', 'Oops', 'Server error!');
-            }
-        )
+            },
+        );
     }
 }

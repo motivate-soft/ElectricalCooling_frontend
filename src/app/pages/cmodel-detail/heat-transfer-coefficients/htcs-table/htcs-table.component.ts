@@ -2,23 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { HtcsService } from '../../../../@core/service/htcs.service';
 import { HTC } from '../../../../@core/models/HTC';
+import htcsData from '../../../../@core/models/htcs.json';
 
-const HTCS_COLUMNS = {
-  name: {
-    title: 'HTC Data Name',
-    type: 'string',
-  },
-  x: {
-    title: 'X-Range',
-    type: 'number',
-  },
-  y: {
-    title: 'Y-Range',
-    type: 'number',
-  },
-};
+
 
 const SETTINGS = {
+  selectMode: 'multi',
   add: {
     addButtonContent: '<i class="nb-plus"></i>',
     createButtonContent: '<i class="nb-checkmark"></i>',
@@ -33,7 +22,20 @@ const SETTINGS = {
     deleteButtonContent: '<i class="nb-trash"></i>',
     confirmDelete: true,
   },
-  columns: HTCS_COLUMNS,
+  columns: {
+    name: {
+      title: 'HTC Data Name',
+      type: 'string',
+    },
+    x: {
+      title: 'X-Range',
+      type: 'number',
+    },
+    y: {
+      title: 'Y-Range',
+      type: 'number',
+    },
+  },
 };
 
 @Component({
@@ -45,11 +47,14 @@ export class HtcsTableComponent implements OnInit {
   settings = SETTINGS;
   source: LocalDataSource = new LocalDataSource();
 
+  selected = [];
+
   constructor(private htcsService: HtcsService) {
 
   }
 
   ngOnInit(): void {
+    this.htcsService.htcs$.next(htcsData);
     this.source.load(this.htcsService.getCoords());
   }
 
@@ -65,14 +70,14 @@ export class HtcsTableComponent implements OnInit {
     for (let i = 0; i < jsonObject.length; i++) {
       array.push(jsonObject[i].split(','));
     }
-    this.htcsService.htcs = array.map(item => ({
+
+    this.htcsService.htcs$.next(array.map(item => ({
       x: item[0],
       ag: item[1],
       bg: item[2],
       tip: item[3],
       bip: item[4],
-    }));
-    this.source.load(this.htcsService.getCoords());
+    })));
   }
 
   async loadCSV(file) {
@@ -84,7 +89,7 @@ export class HtcsTableComponent implements OnInit {
       reader.onerror = function () {
         reject(reader.error);
       };
-      console.log('__reader', reader);
+
       reader.readAsText(file);
     });
   }
@@ -94,6 +99,20 @@ export class HtcsTableComponent implements OnInit {
       event.confirm.resolve();
     } else {
       event.confirm.reject();
+    }
+  }
+
+  onUserRowSelect(event): void {
+    console.log('event.selected', event.selected);
+    console.log('this.htcs', this.htcsService.getCoords());
+    this.selected = event.selected;
+  }
+
+  onBulkDelete(event): void {
+    if (this.selected?.length > 0) {
+
+    } else {
+      alert('Choose items');
     }
   }
 }

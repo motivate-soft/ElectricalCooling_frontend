@@ -30,10 +30,10 @@ export class WindingChartComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.cmodelService.windingTemperaturesData$.subscribe(
       data => {
-        this.rotorTemperaturesData$.next(data[0])
-        this.statorTemperaturesData$.next(data[1])
-      }
-    )
+        this.rotorTemperaturesData$.next(data[0]);
+        this.statorTemperaturesData$.next(data[1]);
+      },
+    );
 
     combineLatest([
       this.rotorTemperaturesData$,
@@ -46,16 +46,16 @@ export class WindingChartComponent implements AfterViewInit, OnDestroy {
         const echarts: any = config.variables.echarts;
         if (rotorTemperaturesData === [] || statorTemperaturesData === []) return;
 
-        this.rotorChartOptions = this.generateChartOptions(rotorTemperaturesData, colors, echarts)
-        this.statorChartOptions = this.generateChartOptions(statorTemperaturesData, colors, echarts)
+        this.rotorChartOptions = this.generateChartOptions(rotorTemperaturesData, colors, echarts);
+        this.statorChartOptions = this.generateChartOptions(statorTemperaturesData, colors, echarts);
 
-      })
+      });
   }
 
   generateChartOptions(data, colors, echarts) {
     const keyArrays = [];
     const dataArray = [];
-    const colorKeys = ["primary", "success", "info", "danger", "warning"]
+    const colorKeys = ['primary', 'success', 'info', 'danger', 'warning'];
 
     let key,
       min = data[0].Temperature,
@@ -67,8 +67,8 @@ export class WindingChartComponent implements AfterViewInit, OnDestroy {
         TangentialLocation: data[i].TangentialLocation,
       };
 
-      if (min > data[i].Temperature) min = data[i].Temperature
-      if (max < data[i].Temperature) max = data[i].Temperature
+      if (min > data[i].Temperature) min = data[i].Temperature;
+      if (max < data[i].Temperature) max = data[i].Temperature;
 
       const index = keyArrays.findIndex(item => item.RadialLocation === key.RadialLocation && item.TangentialLocation === key.TangentialLocation);
       if (index > -1) {
@@ -156,7 +156,7 @@ export class WindingChartComponent implements AfterViewInit, OnDestroy {
       })),
     };
 
-    return chartOptions
+    return chartOptions;
   }
 
   ngOnDestroy(): void {

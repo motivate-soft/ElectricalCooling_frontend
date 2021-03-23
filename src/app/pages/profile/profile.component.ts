@@ -103,7 +103,7 @@ export class ProfileComponent implements OnInit {
     }
 
     saveProfile() {
-        console.log('this.profileForm', this.profileForm)
+        console.log('this.profileForm', this.profileForm);
         this.updateProfile();
         // if (!this.loading) {
         //     this.profileFormSubmitted = true;

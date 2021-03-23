@@ -133,7 +133,7 @@ export const NB_CORE_PROVIDERS = [
               return res.error ? res.error.detail : options[module].defaultErrors;
             }
             if (module === 'register') {
-              console.log('res.error', res.error)
+              console.log('res.error', res.error);
               return res.error
                 ? res.error.email
                   ? res.error.email[0]

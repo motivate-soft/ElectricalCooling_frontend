@@ -86,6 +86,7 @@ export class FacesTableComponent implements OnInit {
         renderComponent: ButtonViewComponent,
         onComponentInitFunction: (instance: any) => {
           instance.save.subscribe(row => {
+            console.log('onComponentInitFunction', row);
             this.openModal(row);
           });
         },
@@ -96,11 +97,14 @@ export class FacesTableComponent implements OnInit {
   data: any[];
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private cmodelService: CoolingModelService, private dialogService: NbDialogService) { }
+  constructor(private cmodelService: CoolingModelService, private dialogService: NbDialogService) {
+
+  }
 
   ngOnInit(): void {
     this.cmodelService.currentCmodel$.subscribe(value => {
-      this.source.load(value.faces);
+      this.data = value.faces;
+      this.source.load(this.data);
     });
   }
 
@@ -114,8 +118,9 @@ export class FacesTableComponent implements OnInit {
       })
       .onClose.subscribe(setName => {
         if (!setName) return;
+
         const selectedRowIndex = this.data.indexOf(rowData);
-        console.log(' selectedRowIndex, rowData, setName', selectedRowIndex, rowData, setName);
+        console.log('selectedRowIndex, rowData, setName', selectedRowIndex, rowData, setName);
 
         const calc = rowData.calculation.split(':')[0];
         this.data[selectedRowIndex] = { ...rowData, calculation: `${calc}:${setName}` };

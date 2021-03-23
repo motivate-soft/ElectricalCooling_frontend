@@ -19,6 +19,7 @@ export class UserService extends UserData {
       });
 
   }
+
   getUser(id = ''): Observable<User> {
     return this.apiService
       .get(

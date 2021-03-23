@@ -38,7 +38,7 @@ import { DetailModule } from './cmodel-detail/detail.module';
     ngFormsModule,
     ReactiveFormsModule,
 
-    DetailModule
+    DetailModule,
   ],
   declarations: [PagesComponent, CmodelListComponent, ProfileComponent],
 })
